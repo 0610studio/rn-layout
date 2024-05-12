@@ -24,6 +24,7 @@ interface Props extends TextInputProps {
   paddingHorizontal?: number;
   borderWidth?: number;
   errorMessage?: string;
+  fontFamily?: string;
 }
 
 /**
@@ -40,6 +41,7 @@ interface Props extends TextInputProps {
  * @param {number} [borderRadius=10]
  * @param {number} [borderWidth=1.2]
  * @param {number} [paddingHorizontal=14]
+ * @param {string} fontFamily
  */
 const TextField = ({
   status = 'default',
@@ -56,6 +58,7 @@ const TextField = ({
   borderRadius = 10,
   paddingHorizontal = 14,
   errorMessage,
+  fontFamily,
   ...props
 }: Props) => {
   const {
@@ -79,7 +82,7 @@ const TextField = ({
       <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
         <TextInput
           {...props}
-          style={{ fontSize: fontSize, width: '100%', paddingVertical: 14, height: 58, paddingRight: 25 }}
+          style={{ fontSize: fontSize, width: '100%', paddingVertical: 14, height: 58, paddingRight: 25, fontFamily: fontFamily }}
           allowFontScaling={false}
           value={value}
           onFocus={() => {
@@ -108,6 +111,7 @@ const TextField = ({
                 paddingHorizontal: 5,
                 paddingVertical: 2,
                 textAlignVertical: 'center',
+                fontFamily: fontFamily
               }
             ]}>
             {label}
@@ -119,7 +123,7 @@ const TextField = ({
             <TouchableOpacity style={{ position: 'absolute', width: 18, height: 18, right: 15, borderRadius: 30, backgroundColor: '#e6e6e6', justifyContent: 'center', alignItems: 'center' }}
               hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
               onPress={() => { onChangeText?.(''); }}>
-              <Text allowFontScaling={false} style={{ fontSize: 8, color: '#5E696E', fontWeight: 'bold' }}>
+              <Text allowFontScaling={false} style={{ fontSize: 8, color: '#5E696E', fontWeight: 'bold', fontFamily: fontFamily }}>
                 X
               </Text>
             </TouchableOpacity>
@@ -131,12 +135,12 @@ const TextField = ({
         status === 'error' && errorMessage && (
           <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 3, marginTop: 5 }}>
             <View style={{ width: 18, height: 18, justifyContent: 'center', alignItems: 'center', borderRadius: 30, backgroundColor: errorColor }}>
-              <Text allowFontScaling={false} style={{ fontWeight: 'bold', color: 'white', textAlign: 'center', textAlignVertical: 'center', fontSize: 11 }}>
+              <Text allowFontScaling={false} style={{ fontWeight: 'bold', color: 'white', textAlign: 'center', textAlignVertical: 'center', fontSize: 11, fontFamily: fontFamily }}>
                 {`!`}
               </Text>
             </View>
 
-            <Text allowFontScaling={false} style={{ marginLeft: 5, fontSize: 14, color: errorColor }}>
+            <Text allowFontScaling={false} style={{ marginLeft: 5, fontSize: 14, color: errorColor, fontFamily: fontFamily }}>
               {errorMessage}
             </Text>
           </View>
