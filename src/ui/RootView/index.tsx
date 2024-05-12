@@ -1,9 +1,6 @@
 import { ReactNode } from 'react';
-import React, { ViewProps, KeyboardAvoidingView, Platform, ScrollView, StatusBar, StyleSheet, Dimensions } from 'react-native';
+import React, { ViewProps, KeyboardAvoidingView, Platform, ScrollView, StatusBar, StyleSheet, Dimensions, View, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import colors from '@src/constants/colors';
-import GlobalLoading from '@src/components/molecules/GlobalLoading';
-import { ViewAtom } from '@src/components/atoms';
 
 
 type RootViewProps = ViewProps & {
@@ -20,22 +17,22 @@ type RootViewProps = ViewProps & {
 const RootView = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, scrollViewRef, bottomComponent, showsVerticalScrollIndicator = true, ...props }: RootViewProps) => {
 
   return (
-    <SafeAreaView style={[styles.flex1, { backgroundColor: colors.WHITE }]} edges={edges}>
-      <StatusBar barStyle={barStyle || 'light-content'} backgroundColor={statusBarColor || colors.WHITE} />
+    <SafeAreaView style={[styles.flex1, { backgroundColor: 'white' }]} edges={edges}>
+      <StatusBar barStyle={barStyle || 'light-content'} backgroundColor={statusBarColor || 'white'} />
 
       <KeyboardAvoidingView style={[styles.flex1]} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
         {
-          isLoader ? (<GlobalLoading />) : (
+          isLoader ? (<ActivityIndicator />) : (
             isScrollView ? (
               <ScrollView ref={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
-                <ViewAtom style={[styles.flex1, props.style]}>
+                <View style={[styles.flex1, props.style]}>
                   {props.children}
-                </ViewAtom>
+                </View>
               </ScrollView>
             ) : (
-              <ViewAtom style={[styles.flex1, props.style]}>
+              <View style={[styles.flex1, props.style]}>
                 {props.children}
-              </ViewAtom>
+              </View>
             )
           )
         }

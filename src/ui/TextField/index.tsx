@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Image,
   Text,
   TextInput,
   TextInputProps,
@@ -76,7 +75,7 @@ const TextField = ({
   });
 
   return (
-    <>
+    <View>
       <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
         <TextInput
           {...props}
@@ -117,13 +116,12 @@ const TextField = ({
 
         {
           value && focus && (
-            <TouchableOpacity style={{ position: 'absolute', padding: 3, right: 15, borderRadius: 30, backgroundColor: '#e6e6e6', justifyContent: 'center', alignItems: 'center' }}
+            <TouchableOpacity style={{ position: 'absolute', width: 18, height: 18, right: 15, borderRadius: 30, backgroundColor: '#e6e6e6', justifyContent: 'center', alignItems: 'center' }}
               hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
               onPress={() => { onChangeText?.(''); }}>
-              <Image
-                source={require('./assets/ic_x.png')}
-                style={{ width: 16, height: 16, tintColor: '#5E696E' }}
-              />
+              <Text allowFontScaling={false} style={{ fontSize: 8, color: '#5E696E', fontWeight: 'bold' }}>
+                X
+              </Text>
             </TouchableOpacity>
           )
         }
@@ -144,7 +142,7 @@ const TextField = ({
           </View>
         )
       }
-    </>
+    </View>
   );
 };
 
