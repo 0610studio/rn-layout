@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const useTextField = ({
     fontSize,
@@ -24,13 +24,13 @@ const useTextField = ({
             labelSharedValue.value,
             [0, 1],
             [fontSize, 13],
-            Extrapolate.CLAMP,
+            "clamp"
         );
         const topMargin = interpolate(
             labelSharedValue.value,
             [0, 1],
             [0, -31],
-            Extrapolate.CLAMP,
+            "clamp"
         );
 
         return {
