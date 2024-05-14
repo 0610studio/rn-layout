@@ -9,21 +9,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { KeyboardAvoidingView, ScrollView, StatusBar, StyleSheet, Dimensions, View, ActivityIndicator, Platform } from 'react-native';
+import React from 'react';
+import { KeyboardAvoidingView, StatusBar, StyleSheet, Dimensions, ActivityIndicator, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ViewAtom from '../atoms/ViewAtom';
+import ScrollViewAtom from '../atoms/ScrollViewAtom';
 var RootView = function (_a) {
-    var _b = _a.isLoader, isLoader = _b === void 0 ? false : _b, statusBarColor = _a.statusBarColor, barStyle = _a.barStyle, _c = _a.edges, edges = _c === void 0 ? ['top', 'bottom'] : _c, _d = _a.isScrollView, isScrollView = _d === void 0 ? true : _d, scrollViewRef = _a.scrollViewRef, bottomComponent = _a.bottomComponent, _e = _a.showsVerticalScrollIndicator, showsVerticalScrollIndicator = _e === void 0 ? true : _e, props = __rest(_a, ["isLoader", "statusBarColor", "barStyle", "edges", "isScrollView", "scrollViewRef", "bottomComponent", "showsVerticalScrollIndicator"]);
+    var _b = _a.isLoader, isLoader = _b === void 0 ? false : _b, statusBarColor = _a.statusBarColor, barStyle = _a.barStyle, _c = _a.edges, edges = _c === void 0 ? ['top', 'bottom'] : _c, _d = _a.isScrollView, isScrollView = _d === void 0 ? true : _d, scrollViewRef = _a.scrollViewRef, topComponent = _a.topComponent, bottomComponent = _a.bottomComponent, _e = _a.showsVerticalScrollIndicator, showsVerticalScrollIndicator = _e === void 0 ? true : _e, props = __rest(_a, ["isLoader", "statusBarColor", "barStyle", "edges", "isScrollView", "scrollViewRef", "topComponent", "bottomComponent", "showsVerticalScrollIndicator"]);
     return (<SafeAreaView style={[styles.flex1, { backgroundColor: 'white' }]} edges={edges}>
-      <StatusBar barStyle={barStyle || 'light-content'} backgroundColor={statusBarColor || 'white'}/>
+      <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || 'white'}/>
 
       <KeyboardAvoidingView style={styles.flex1} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
-        {isLoader ? (<ActivityIndicator />) : (isScrollView ? (<ScrollView ref={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
-                <View style={[styles.flex1, props.style]}>
+        {topComponent && topComponent}
+
+        {isLoader ? (<ActivityIndicator />) : (isScrollView ? (<ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
+                <ViewAtom style={[styles.flex1, props.style]}>
                   {props.children}
-                </View>
-              </ScrollView>) : (<View style={[styles.flex1, props.style]}>
+                </ViewAtom>
+              </ScrollViewAtom>) : (<ViewAtom style={[styles.flex1, props.style]}>
                 {props.children}
-              </View>))}
+              </ViewAtom>))}
 
         {!isLoader && bottomComponent && bottomComponent}
       </KeyboardAvoidingView>

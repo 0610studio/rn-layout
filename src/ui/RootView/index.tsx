@@ -1,6 +1,8 @@
-import { ReactNode } from 'react';
-import React, { ViewProps, KeyboardAvoidingView, ScrollView, StatusBar, StyleSheet, Dimensions, View, ActivityIndicator, Platform } from 'react-native';
+import React, { ReactNode } from 'react';
+import { ViewProps, KeyboardAvoidingView, StatusBar, StyleSheet, Dimensions, ActivityIndicator, Platform, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ViewAtom from '../atoms/ViewAtom';
+import ScrollViewAtom from '../atoms/ScrollViewAtom';
 
 type RootViewProps = ViewProps & {
   isLoader?: boolean;
@@ -8,34 +10,37 @@ type RootViewProps = ViewProps & {
   barStyle?: 'light-content' | 'dark-content';
   edges?: Array<'top' | 'right' | 'bottom' | 'left'>;
   isScrollView?: boolean;
-  scrollViewRef?: any;
-  bottomComponent?: ReactNode | undefined;
+  scrollViewRef?: React.RefObject<ScrollView>;
+  topComponent?: ReactNode;
+  bottomComponent?: ReactNode;
   showsVerticalScrollIndicator?: boolean;
 };
 
-const RootView = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, scrollViewRef, bottomComponent, showsVerticalScrollIndicator = true, ...props }: RootViewProps) => {
+const RootView = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, scrollViewRef, topComponent, bottomComponent, showsVerticalScrollIndicator = true, ...props }: RootViewProps) => {
 
   return (
     <SafeAreaView style={[styles.flex1, { backgroundColor: 'white' }]} edges={edges}>
-      <StatusBar barStyle={barStyle || 'light-content'} backgroundColor={statusBarColor || 'white'} />
+      <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || 'white'} />
 
       <KeyboardAvoidingView
         style={styles.flex1}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
+        {topComponent && topComponent}
+
         {
           isLoader ? (<ActivityIndicator />) : (
             isScrollView ? (
-              <ScrollView ref={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
-                <View style={[styles.flex1, props.style]}>
+              <ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
+                <ViewAtom style={[styles.flex1, props.style]}>
                   {props.children}
-                </View>
-              </ScrollView>
+                </ViewAtom>
+              </ScrollViewAtom>
             ) : (
-              <View style={[styles.flex1, props.style]}>
+              <ViewAtom style={[styles.flex1, props.style]}>
                 {props.children}
-              </View>
+              </ViewAtom>
             )
           )
         }
