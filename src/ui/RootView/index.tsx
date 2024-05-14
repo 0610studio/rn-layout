@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
-import React, { ViewProps, KeyboardAvoidingView, Platform, ScrollView, StatusBar, StyleSheet, Dimensions, View, ActivityIndicator } from 'react-native';
+import React, { ViewProps, KeyboardAvoidingView, ScrollView, StatusBar, StyleSheet, Dimensions, View, ActivityIndicator, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 type RootViewProps = ViewProps & {
   isLoader?: boolean;
@@ -20,7 +19,11 @@ const RootView = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 
     <SafeAreaView style={[styles.flex1, { backgroundColor: 'white' }]} edges={edges}>
       <StatusBar barStyle={barStyle || 'light-content'} backgroundColor={statusBarColor || 'white'} />
 
-      <KeyboardAvoidingView style={[styles.flex1]} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
+      <KeyboardAvoidingView
+        style={styles.flex1}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
+      >
         {
           isLoader ? (<ActivityIndicator />) : (
             isScrollView ? (

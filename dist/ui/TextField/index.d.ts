@@ -15,7 +15,8 @@ interface Props extends TextInputProps {
     paddingHorizontal?: number;
     borderWidth?: number;
     errorMessage?: string;
+    fontFamily?: string;
 }
-declare const TextField: ({ status, value, onChangeText, label, labelColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, ...props }: Props) => React.JSX.Element;
+declare const TextField: ({ status, value, onChangeText, label, labelColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, fontFamily, ...props }: Props) => React.JSX.Element;
 export default TextField;
 //# sourceMappingURL=index.d.ts.map

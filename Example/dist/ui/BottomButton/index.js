@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ActivityIndicator, Keyboard, Platform, StyleSheet, TouchableOpacity } from "react-native";
-import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 var DEFAULT_MARGIN_X = 20;
 var DEFAULT_MARGIN_TOP = 0;
 var DEFAULT_MARGIN_BOTTOM = 20;
@@ -24,9 +24,9 @@ var BottomButton = function (_a) {
         };
     }, []);
     var animatedStyle = useAnimatedStyle(function () {
-        var getBottom = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0], Extrapolation.CLAMP);
-        var getMargin = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_X, 0], Extrapolation.CLAMP);
-        var getRadius = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_BORDER_RADIUS, 0], Extrapolation.CLAMP);
+        var getBottom = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0], 'clamp');
+        var getMargin = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_X, 0], 'clamp');
+        var getRadius = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_BORDER_RADIUS, 0], 'clamp');
         return {
             marginBottom: withTiming(getBottom, DURATION),
             marginLeft: withTiming(getMargin, DURATION),

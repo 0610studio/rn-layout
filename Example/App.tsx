@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import RootView from './dist/ui/RootView';
-import { ActivityIndicator, Dimensions, Keyboard, StyleSheet, Text, View } from 'react-native';
-import TextField from './dist/ui/TextField';
-import BottomButton from './dist/ui/BottomButton';
+import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { RootView, TextField, BottomButton, Pressable, RadioGroup } from './dist';
 
 function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -16,7 +14,7 @@ function App(): React.JSX.Element {
     <RootView
       bottomComponent={
         <BottomButton
-          buttonStyle={{ paddingVertical: 16, backgroundColor: buttonDisabled ? '#ff5555' : '#5555ff' }}
+          buttonStyle={{ height: 55, backgroundColor: buttonDisabled ? '#ff5555' : '#5555ff' }}
           disabled={buttonDisabled}
           isLoading={isLoading}
           loadingComponent={
@@ -36,6 +34,29 @@ function App(): React.JSX.Element {
         />
       }>
       <View style={styles.container}>
+
+        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around' }}>
+          <Pressable
+            style={styles.sleekStyle}
+            pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
+            onPress={() => {
+              console.log('SleekPressable 버튼 클릭');
+            }}
+          >
+            <Text>SleekPressable 버튼</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.sleekStyle}
+            pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
+            onPress={() => {
+              console.log('SleekPressable 버튼 클릭');
+            }}
+          >
+            <Text>SleekPressable 버튼</Text>
+          </Pressable>
+        </View>
+
         <TextField
           label="닉네임"
           value={nick}
@@ -64,6 +85,16 @@ function App(): React.JSX.Element {
           }}
           multiline={false}
         />
+
+        <RadioGroup
+          options={[
+            { value: '남자', index: '1' },
+            { value: '여자', index: '2' }
+          ]}
+          onSelect={(value) => {
+            console.log(value);
+          }}
+        />
       </View>
     </RootView>
   );
@@ -73,8 +104,11 @@ function App(): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width - 40, marginLeft: 20, marginTop: 22, gap: 100
+    width: Dimensions.get('window').width - 40, marginLeft: 20, marginTop: 22, gap: 20
   },
+  sleekStyle: {
+    width: '100%', paddingVertical: 20, paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 20
+  }
 });
 
 

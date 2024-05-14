@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ActivityIndicator, Keyboard, Platform, StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
-import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const DEFAULT_MARGIN_X = 20;
 const DEFAULT_MARGIN_TOP = 0;
@@ -50,21 +50,21 @@ const BottomButton = ({
             isKeyboardVisible.value,
             [0, 1],
             [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0],
-            Extrapolation.CLAMP,
+            'clamp',
         );
 
         const getMargin = interpolate(
             isKeyboardVisible.value,
             [0, 1],
             [DEFAULT_MARGIN_X, 0],
-            Extrapolation.CLAMP,
+            'clamp',
         );
 
         const getRadius = interpolate(
             isKeyboardVisible.value,
             [0, 1],
             [DEFAULT_BORDER_RADIUS, 0],
-            Extrapolation.CLAMP,
+            'clamp',
         );
 
         return {
