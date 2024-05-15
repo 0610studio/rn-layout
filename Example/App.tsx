@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, TextField, BottomButton, Pressable, RadioGroup } from './dist';
+import { RootView, BottomButton, Pressable, RadioGroup, TextField } from './dist';
 
 function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -41,6 +41,7 @@ function App(): React.JSX.Element {
             pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
             onPress={() => {
               console.log('SleekPressable 버튼 클릭');
+              setEmail(prev=> prev+'1')
             }}
           >
             <Text>SleekPressable 버튼</Text>

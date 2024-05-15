@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const useTextField = ({
+    value,
     fontSize,
     status,
     borderColor,
@@ -9,6 +10,7 @@ const useTextField = ({
     labelColor,
     errorColor
 }: {
+    value: string;
     fontSize: number;
     status: 'default' | 'error';
     borderColor: string;
@@ -18,6 +20,12 @@ const useTextField = ({
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
     const labelSharedValue = useSharedValue(0);
+
+    useEffect(() => {
+        if (labelSharedValue.value === 0 && value) {
+            labelSharedValue.value = 1;
+        }
+    }, [value]);
 
     const labelAnimation = useAnimatedStyle(() => {
         const labelSize = interpolate(

@@ -7,7 +7,7 @@ import {
   View,
   Image,
 } from 'react-native';
-import Animated, { FadeInUp, FadeOut } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 
 interface Props extends TextInputProps {
@@ -75,12 +75,13 @@ const TextField = ({
     borderColor,
     focusColor,
     labelColor,
-    errorColor
+    errorColor,
+    value
   });
 
   return (
     <Animated.View
-      entering={FadeInUp}
+      entering={FadeInDown}
       exiting={FadeOut}
     >
       <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
