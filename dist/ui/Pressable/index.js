@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { Pressable as RnPressable } from "react-native";
-import Animated, { FadeInUp, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { FadeInDown, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 var DEFAULT_DURATION = { duration: 100 };
 ;
 var Pressable = function (_a) {
@@ -32,7 +32,7 @@ var Pressable = function (_a) {
                 minWidth: minWidth
             };
         }}>
-            <Animated.View style={[props.style, boxAnimation]} entering={FadeInUp}>
+            <Animated.View style={[props.style, boxAnimation]} entering={FadeInDown}>
                 {props.children}
             </Animated.View>
         </RnPressable>);

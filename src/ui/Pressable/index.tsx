@@ -1,5 +1,5 @@
 import { Pressable as RnPressable, ViewProps } from "react-native";
-import Animated, { FadeInUp, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import Animated, { FadeInDown, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
 
 const DEFAULT_DURATION = { duration: 100 };
 
@@ -52,7 +52,7 @@ const Pressable = ({
         >
             <Animated.View
                 style={[props.style, boxAnimation]}
-                entering={FadeInUp}
+                entering={FadeInDown}
             >
                 {props.children}
             </Animated.View>

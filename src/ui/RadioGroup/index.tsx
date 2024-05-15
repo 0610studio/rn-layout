@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { Text, TextProps, View, ViewProps } from "react-native";
 import Pressable from "../Pressable";
 
-interface Option {
+export interface RadioOption {
     value: string;
     index: string;
 }
 
 const RadioGroup = ({
     options,
+    value,
     onSelect,
     containerStyle,
     valueStyle,
@@ -16,26 +16,25 @@ const RadioGroup = ({
     selectedColor = '#FFA900',
     minWidth
 }: {
-    options: Option[];
-    onSelect: (value?: Option) => void;
+    options: RadioOption[];
+    value?: RadioOption;
+    onSelect: (value?: RadioOption) => void;
     containerStyle?: ViewProps;
     valueStyle?: TextProps;
     normalColor?: string;
     selectedColor?: string;
     minWidth?: number;
 }) => {
-    const [selected, setSelected] = useState<Option | null>(null);
     return (
         <View style={{ flexDirection: 'row', gap: 10, flexWrap: 'wrap' }} {...containerStyle}>
             {
                 options.map((option, _) => {
-                    const isSelected = selected?.index === option.index;
+                    const isSelected = value?.index === option.index;
                     const setColor = isSelected ? selectedColor : normalColor;
                     return (
                         <Pressable
                             key={option.index}
                             onPress={() => {
-                                setSelected(option);
                                 onSelect(option);
                             }}
                             pressedBackgroundColor='transparent'

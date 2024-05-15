@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, Pressable, RadioGroup, TextField, BottomButton } from './dist';
+import { RootView, Pressable, TextField, BottomButton, RadioGroup } from './dist';
+import { RadioOption } from './dist/ui/RadioGroup';
 
 function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -9,6 +10,7 @@ function App(): React.JSX.Element {
   const [phone, setPhone] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [radioValue, setRadioValue] = useState<RadioOption>();
 
   return (
     <RootView
@@ -101,8 +103,9 @@ function App(): React.JSX.Element {
             { value: '남자', index: '1' },
             { value: '여자', index: '2' }
           ]}
+          value={radioValue}
           onSelect={(value) => {
-            console.log(value);
+            setRadioValue(value);
           }}
         />
       </View>

@@ -1,12 +1,13 @@
 /// <reference types="react" />
 import { TextProps, ViewProps } from "react-native";
-interface Option {
+export interface RadioOption {
     value: string;
     index: string;
 }
-declare const RadioGroup: ({ options, onSelect, containerStyle, valueStyle, normalColor, selectedColor, minWidth }: {
-    options: Option[];
-    onSelect: (value?: Option) => void;
+declare const RadioGroup: ({ options, value, onSelect, containerStyle, valueStyle, normalColor, selectedColor, minWidth }: {
+    options: RadioOption[];
+    value?: RadioOption | undefined;
+    onSelect: (value?: RadioOption) => void;
     containerStyle?: ViewProps | undefined;
     valueStyle?: TextProps | undefined;
     normalColor?: string | undefined;
