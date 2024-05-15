@@ -7,7 +7,7 @@ var DEFAULT_MARGIN_BOTTOM = 20;
 var DEFAULT_BORDER_RADIUS = 14;
 var DURATION = { duration: 250 };
 var BottomButton = function (_a) {
-    var labelComponent = _a.labelComponent, _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator /> : _b, _c = _a.buttonStyle, buttonStyle = _c === void 0 ? {} : _c, _d = _a.disabled, disabled = _d === void 0 ? false : _d, _e = _a.isLoading, isLoading = _e === void 0 ? false : _e, onPress = _a.onPress;
+    var _b = _a.loadingComponent, loadingComponent = _b === void 0 ? <ActivityIndicator /> : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.isLoading, isLoading = _d === void 0 ? false : _d, primaryLabelComponent = _a.primaryLabelComponent, primaryOnPress = _a.primaryOnPress, _e = _a.primaryButtonStyle, primaryButtonStyle = _e === void 0 ? {} : _e, secondaryOnPress = _a.secondaryOnPress, secondaryLabelComponent = _a.secondaryLabelComponent, _f = _a.secondaryButtonStyle, secondaryButtonStyle = _f === void 0 ? {} : _f;
     var isKeyboardVisible = useSharedValue(0);
     var keyboardHeight = useSharedValue(0);
     useEffect(function () {
@@ -35,11 +35,15 @@ var BottomButton = function (_a) {
         };
     });
     return (<Animated.View style={[styles.container, animatedStyle]}>
-            <TouchableOpacity activeOpacity={0.7} style={[buttonStyle, styles.touchContainer]} onPress={onPress} disabled={disabled || isLoading}>
+            {secondaryLabelComponent && (<TouchableOpacity activeOpacity={0.7} style={[secondaryButtonStyle, styles.touchSecondaryContainer]} onPress={secondaryOnPress}>
+                        {secondaryLabelComponent}
+                    </TouchableOpacity>)}
+
+            <TouchableOpacity activeOpacity={0.7} style={[primaryButtonStyle, styles.touchContainer]} onPress={primaryOnPress} disabled={disabled || isLoading}>
 
                 {isLoading
             ? loadingComponent
-            : labelComponent}
+            : primaryLabelComponent}
             </TouchableOpacity>
         </Animated.View>);
 };
@@ -47,7 +51,12 @@ var styles = StyleSheet.create({
     touchContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        flex: 2,
+    },
+    touchSecondaryContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
     },
     container: {
         justifyContent: 'center',
@@ -58,6 +67,7 @@ var styles = StyleSheet.create({
         marginLeft: DEFAULT_MARGIN_X,
         marginRight: DEFAULT_MARGIN_X,
         overflow: 'hidden',
+        flexDirection: 'row'
     },
 });
 export default BottomButton;

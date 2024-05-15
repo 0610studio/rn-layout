@@ -9,21 +9,31 @@ const DEFAULT_BORDER_RADIUS = 14;
 const DURATION = { duration: 250 };
 
 interface Props {
-    buttonStyle?: TouchableOpacityProps['style'];
-    labelComponent: React.ReactNode;
     loadingComponent?: React.ReactNode;
     disabled?: boolean;
     isLoading?: boolean;
-    onPress: () => void;
+    // ---
+    primaryOnPress: () => void;
+    primaryLabelComponent: React.ReactNode;
+    primaryButtonStyle?: TouchableOpacityProps['style'];
+    // ---
+    secondaryOnPress?: () => void;
+    secondaryLabelComponent?: React.ReactNode;
+    secondaryButtonStyle?: TouchableOpacityProps['style'];
 }
 
 const BottomButton = ({
-    labelComponent,
     loadingComponent = <ActivityIndicator />,
-    buttonStyle = {},
     disabled = false,
     isLoading = false,
-    onPress,
+    // ---
+    primaryLabelComponent,
+    primaryOnPress,
+    primaryButtonStyle = {},
+    // ---
+    secondaryOnPress,
+    secondaryLabelComponent,
+    secondaryButtonStyle= {}
 }: Props) => {
     const isKeyboardVisible = useSharedValue(0);
     const keyboardHeight = useSharedValue(0);
@@ -80,17 +90,29 @@ const BottomButton = ({
         <Animated.View
             style={[styles.container, animatedStyle]}
         >
+            {
+                secondaryLabelComponent && (
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        style={[secondaryButtonStyle, styles.touchSecondaryContainer]}
+                        onPress={secondaryOnPress}
+                    >
+                        {secondaryLabelComponent}
+                    </TouchableOpacity>
+                )
+            }
+
             <TouchableOpacity
                 activeOpacity={0.7}
-                style={[buttonStyle, styles.touchContainer]}
-                onPress={onPress}
+                style={[primaryButtonStyle, styles.touchContainer]}
+                onPress={primaryOnPress}
                 disabled={disabled || isLoading}
             >
 
                 {
                     isLoading
                         ? loadingComponent
-                        : labelComponent
+                        : primaryLabelComponent
                 }
             </TouchableOpacity>
         </Animated.View>
@@ -102,7 +124,12 @@ const styles = StyleSheet.create({
     touchContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        flex: 2,
+    },
+    touchSecondaryContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
     },
     container: {
         justifyContent: 'center',
@@ -113,6 +140,7 @@ const styles = StyleSheet.create({
         marginLeft: DEFAULT_MARGIN_X,
         marginRight: DEFAULT_MARGIN_X,
         overflow: 'hidden',
+        flexDirection: 'row'
     },
 });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, BottomButton, Pressable, RadioGroup, TextField } from './dist';
+import { RootView, Pressable, RadioGroup, TextField, BottomButton } from './dist';
 
 function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -14,22 +14,31 @@ function App(): React.JSX.Element {
     <RootView
       bottomComponent={
         <BottomButton
-          buttonStyle={{ height: 55, backgroundColor: buttonDisabled ? '#ff5555' : '#5555ff' }}
           disabled={buttonDisabled}
           isLoading={isLoading}
           loadingComponent={
             <ActivityIndicator color="white" />
           }
-          labelComponent={
+          // ---
+          primaryButtonStyle={{ height: 55, backgroundColor: buttonDisabled ? '#ff5555' : '#5555ff' }}
+          primaryLabelComponent={
             <Text style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>등록</Text>
           }
-          onPress={() => {
+          primaryOnPress={() => {
             setIsLoading(true);
             setTimeout(() => {
               setIsLoading(false);
               setEmailError('이메일이 중복되었습니다.');
               setButtonDisabled(true);
             }, 2000);
+          }}
+          // ---
+          secondaryButtonStyle={{ height: 55, backgroundColor: '#F3F3F3' }}
+          secondaryLabelComponent={
+            <Text style={{ fontWeight: 'bold', fontSize: 13, color: '#878787', textDecorationLine: 'underline' }}>건너뛰기</Text>
+          }
+          secondaryOnPress={() => {
+            console.log('건너뛰기 버튼 클릭');
           }}
         />
       }>
@@ -41,7 +50,7 @@ function App(): React.JSX.Element {
             pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
             onPress={() => {
               console.log('SleekPressable 버튼 클릭');
-              setEmail(prev=> prev+'1')
+              setEmail(prev => prev + '1')
             }}
           >
             <Text>SleekPressable 버튼</Text>
