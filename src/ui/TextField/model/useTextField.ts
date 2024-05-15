@@ -8,6 +8,7 @@ const useTextField = ({
     borderColor,
     focusColor,
     labelColor,
+    placeHolderColor,
     errorColor
 }: {
     value: string;
@@ -16,6 +17,7 @@ const useTextField = ({
     borderColor: string;
     focusColor: string;
     labelColor: string;
+    placeHolderColor: string;
     errorColor: string;
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
@@ -55,7 +57,8 @@ const useTextField = ({
     const labelStatusColor =
         status === 'error' ? errorColor
             : focus ? focusColor
-                : labelColor;
+                : !value ? placeHolderColor
+                    : labelColor;
     return {
         focus,
         setFocus,

@@ -7,6 +7,7 @@ interface Props extends TextInputProps {
     labelBgColor?: string;
     label?: string;
     labelColor?: string;
+    placeHolderColor?: string;
     fontSize?: number;
     borderColor?: string;
     borderRadius?: number;
@@ -17,6 +18,6 @@ interface Props extends TextInputProps {
     errorMessage?: string;
     fontFamily?: string;
 }
-declare const TextField: ({ status, value, onChangeText, label, labelColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, fontFamily, ...props }: Props) => React.JSX.Element;
+declare const TextField: ({ status, value, onChangeText, label, labelColor, placeHolderColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, fontFamily, ...props }: Props) => React.JSX.Element;
 export default TextField;
 //# sourceMappingURL=index.d.ts.map

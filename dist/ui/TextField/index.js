@@ -14,19 +14,20 @@ import { Text, TextInput, TouchableOpacity, View, Image, } from 'react-native';
 import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 var TextField = function (_a) {
-    var _b = _a.status, status = _b === void 0 ? 'default' : _b, value = _a.value, onChangeText = _a.onChangeText, _c = _a.label, label = _c === void 0 ? 'Placeholder' : _c, _d = _a.labelColor, labelColor = _d === void 0 ? '#5E696E' : _d, _e = _a.labelBgColor, labelBgColor = _e === void 0 ? 'white' : _e, _f = _a.fontSize, fontSize = _f === void 0 ? 17 : _f, _g = _a.borderWidth, borderWidth = _g === void 0 ? 1.2 : _g, _h = _a.borderColor, borderColor = _h === void 0 ? '#E7EDF0' : _h, _j = _a.focusColor, focusColor = _j === void 0 ? '#007AFF' : _j, _k = _a.errorColor, errorColor = _k === void 0 ? '#FF3B30' : _k, _l = _a.borderRadius, borderRadius = _l === void 0 ? 10 : _l, _m = _a.paddingHorizontal, paddingHorizontal = _m === void 0 ? 14 : _m, errorMessage = _a.errorMessage, fontFamily = _a.fontFamily, props = __rest(_a, ["status", "value", "onChangeText", "label", "labelColor", "labelBgColor", "fontSize", "borderWidth", "borderColor", "focusColor", "errorColor", "borderRadius", "paddingHorizontal", "errorMessage", "fontFamily"]);
-    var _o = useTextField({
+    var _b = _a.status, status = _b === void 0 ? 'default' : _b, value = _a.value, onChangeText = _a.onChangeText, _c = _a.label, label = _c === void 0 ? 'Placeholder' : _c, _d = _a.labelColor, labelColor = _d === void 0 ? '#757575' : _d, _e = _a.placeHolderColor, placeHolderColor = _e === void 0 ? '#B1B1B1' : _e, _f = _a.labelBgColor, labelBgColor = _f === void 0 ? 'white' : _f, _g = _a.fontSize, fontSize = _g === void 0 ? 17 : _g, _h = _a.borderWidth, borderWidth = _h === void 0 ? 1.2 : _h, _j = _a.borderColor, borderColor = _j === void 0 ? '#E7EDF0' : _j, _k = _a.focusColor, focusColor = _k === void 0 ? '#007AFF' : _k, _l = _a.errorColor, errorColor = _l === void 0 ? '#FF3B30' : _l, _m = _a.borderRadius, borderRadius = _m === void 0 ? 10 : _m, _o = _a.paddingHorizontal, paddingHorizontal = _o === void 0 ? 14 : _o, errorMessage = _a.errorMessage, fontFamily = _a.fontFamily, props = __rest(_a, ["status", "value", "onChangeText", "label", "labelColor", "placeHolderColor", "labelBgColor", "fontSize", "borderWidth", "borderColor", "focusColor", "errorColor", "borderRadius", "paddingHorizontal", "errorMessage", "fontFamily"]);
+    var _p = useTextField({
         fontSize: fontSize,
         status: status,
         borderColor: borderColor,
         focusColor: focusColor,
         labelColor: labelColor,
+        placeHolderColor: placeHolderColor,
         errorColor: errorColor,
         value: value
-    }), focus = _o.focus, setFocus = _o.setFocus, labelSharedValue = _o.labelSharedValue, labelAnimation = _o.labelAnimation, statusColor = _o.statusColor, labelStatusColor = _o.labelStatusColor;
+    }), focus = _p.focus, setFocus = _p.setFocus, labelSharedValue = _p.labelSharedValue, labelAnimation = _p.labelAnimation, statusColor = _p.statusColor, labelStatusColor = _p.labelStatusColor;
     return (<Animated.View entering={FadeInDown} exiting={FadeOut}>
       <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
-        <TextInput {...props} style={{ fontSize: fontSize, width: '100%', paddingVertical: 14, height: 52, paddingRight: 25, fontFamily: fontFamily }} allowFontScaling={false} value={value} onFocus={function () {
+        <TextInput {...props} style={[props.style, { fontSize: fontSize, width: '100%', height: 54, paddingRight: 25, fontFamily: fontFamily }]} allowFontScaling={false} value={value} onFocus={function () {
             setFocus(true);
             labelSharedValue.value = 1;
         }} onBlur={function () {

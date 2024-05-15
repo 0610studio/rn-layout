@@ -43,7 +43,7 @@ const RadioGroup = ({
                                     <View style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: setColor }}></View>
                                 </View>
                                 <Text
-                                    style={{ color: '#5E696E', marginLeft: 10, fontSize: 17 }}
+                                    style={{ color: '#757575', marginLeft: 10, fontSize: 17 }}
                                     {...valueStyle}
                                 >
                                     {option.value}

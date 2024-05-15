@@ -1,11 +1,12 @@
 /// <reference types="react" />
-declare const useTextField: ({ value, fontSize, status, borderColor, focusColor, labelColor, errorColor }: {
+declare const useTextField: ({ value, fontSize, status, borderColor, focusColor, labelColor, placeHolderColor, errorColor }: {
     value: string;
     fontSize: number;
     status: 'default' | 'error';
     borderColor: string;
     focusColor: string;
     labelColor: string;
+    placeHolderColor: string;
     errorColor: string;
 }) => {
     focus: boolean;

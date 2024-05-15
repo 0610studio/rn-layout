@@ -17,6 +17,7 @@ interface Props extends TextInputProps {
   labelBgColor?: string;
   label?: string;
   labelColor?: string;
+  placeHolderColor?: string;
   fontSize?: number;
   borderColor?: string;
   borderRadius?: number;
@@ -29,11 +30,12 @@ interface Props extends TextInputProps {
 }
 
 /**
- * 높이는 고정 52 입니다. 그에 맞춰 아래 파라미터를 조정해주세요.
+ * 높이는 고정 54 입니다. 그에 맞춰 아래 파라미터를 조정해주세요.
  * @param {string} value
  * @param {(text: string) => void} onChangeText
  * @param {string} [label='Placeholder']
- * @param {string} [labelColor='#5E696E']
+ * @param {string} [labelColor='#757575']
+ * @param {string} [placeHolderColor='#B1B1B1']
  * @param {string} [labelBgColor='white'] label이 input border 위로 올라갈때 border를 가리기 위한 배경색
  * @param {number} [fontSize=17]
  * @param {string} [borderColor='#E7EDF0']
@@ -49,7 +51,8 @@ const TextField = ({
   value,
   onChangeText,
   label = 'Placeholder',
-  labelColor = '#5E696E',
+  labelColor = '#757575',
+  placeHolderColor = '#B1B1B1',
   labelBgColor = 'white',
   fontSize = 17,
   borderWidth = 1.2,
@@ -75,6 +78,7 @@ const TextField = ({
     borderColor,
     focusColor,
     labelColor,
+    placeHolderColor,
     errorColor,
     value
   });
@@ -87,7 +91,7 @@ const TextField = ({
       <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
         <TextInput
           {...props}
-          style={{ fontSize: fontSize, width: '100%', paddingVertical: 14, height: 52, paddingRight: 25, fontFamily: fontFamily }}
+          style={[props.style, { fontSize: fontSize, width: '100%', height: 54, paddingRight: 25, fontFamily: fontFamily }]}
           allowFontScaling={false}
           value={value}
           onFocus={() => {

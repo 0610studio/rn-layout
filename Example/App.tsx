@@ -76,6 +76,8 @@ function App(): React.JSX.Element {
             setNick(text);
           }}
           multiline={false}
+          style={{color: 'red'}}
+          labelColor='blue'
         />
 
         <TextField

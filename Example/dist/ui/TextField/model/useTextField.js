@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 var useTextField = function (_a) {
-    var value = _a.value, fontSize = _a.fontSize, status = _a.status, borderColor = _a.borderColor, focusColor = _a.focusColor, labelColor = _a.labelColor, errorColor = _a.errorColor;
+    var value = _a.value, fontSize = _a.fontSize, status = _a.status, borderColor = _a.borderColor, focusColor = _a.focusColor, labelColor = _a.labelColor, placeHolderColor = _a.placeHolderColor, errorColor = _a.errorColor;
     var _b = useState(false), focus = _b[0], setFocus = _b[1];
     var labelSharedValue = useSharedValue(0);
     useEffect(function () {
@@ -22,7 +22,8 @@ var useTextField = function (_a) {
             : borderColor;
     var labelStatusColor = status === 'error' ? errorColor
         : focus ? focusColor
-            : labelColor;
+            : !value ? placeHolderColor
+                : labelColor;
     return {
         focus: focus,
         setFocus: setFocus,
