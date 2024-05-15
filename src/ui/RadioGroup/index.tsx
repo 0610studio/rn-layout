@@ -1,10 +1,7 @@
 import { Text, TextProps, View, ViewProps } from "react-native";
 import Pressable from "../Pressable";
+import { RadioOption } from "../types";
 
-export interface RadioOption {
-    value: string;
-    index: string;
-}
 
 const RadioGroup = ({
     options,
@@ -18,7 +15,7 @@ const RadioGroup = ({
 }: {
     options: RadioOption[];
     value?: RadioOption;
-    onSelect: (value?: RadioOption) => void;
+    onSelect: (value: RadioOption) => void;
     containerStyle?: ViewProps;
     valueStyle?: TextProps;
     normalColor?: string;
