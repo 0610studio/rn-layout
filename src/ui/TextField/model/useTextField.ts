@@ -31,13 +31,13 @@ const useTextField = ({
         const labelSize = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [fontSize, 13],
+            [fontSize, 12],
             "clamp"
         );
         const topMargin = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [0, -31],
+            [0, -28],
             "clamp"
         );
 

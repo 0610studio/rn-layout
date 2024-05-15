@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, Pressable, TextField, BottomButton, RadioGroup } from './dist';
+import { RootView, Pressable, BottomButton, RadioGroup, TextField } from './dist';
 import { RadioOption } from './dist/ui/types';
 
 function App(): React.JSX.Element {

@@ -10,8 +10,8 @@ var useTextField = function (_a) {
         }
     }, [value]);
     var labelAnimation = useAnimatedStyle(function () {
-        var labelSize = interpolate(labelSharedValue.value, [0, 1], [fontSize, 13], "clamp");
-        var topMargin = interpolate(labelSharedValue.value, [0, 1], [0, -31], "clamp");
+        var labelSize = interpolate(labelSharedValue.value, [0, 1], [fontSize, 12], "clamp");
+        var topMargin = interpolate(labelSharedValue.value, [0, 1], [0, -28], "clamp");
         return {
             top: withTiming(topMargin, { duration: 150 }),
             fontSize: withTiming(labelSize, { duration: 150 }),
