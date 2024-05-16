@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInputProps } from 'react-native';
-interface Props extends TextInputProps {
+interface Props {
     status?: 'default' | 'error';
     value: string;
     onChangeText: (text: string) => void;
@@ -17,7 +17,9 @@ interface Props extends TextInputProps {
     borderWidth?: number;
     errorMessage?: string;
     fontFamily?: string;
+    textInputProps?: TextInputProps;
+    boxStyle?: 'outline' | 'underline';
 }
-declare const TextField: ({ status, value, onChangeText, label, labelColor, placeHolderColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, fontFamily, ...props }: Props) => React.JSX.Element;
+declare const TextField: ({ status, value, onChangeText, label, labelColor, placeHolderColor, labelBgColor, fontSize, borderWidth, borderColor, focusColor, errorColor, borderRadius, paddingHorizontal, errorMessage, fontFamily, textInputProps, boxStyle, }: Props) => React.JSX.Element;
 export default TextField;
 //# sourceMappingURL=index.d.ts.map

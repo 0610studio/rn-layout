@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { LayoutChangeEvent } from "react-native";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
 const useTextField = ({
@@ -22,6 +23,7 @@ const useTextField = ({
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
     const labelSharedValue = useSharedValue(0);
+    const boxHeight = useSharedValue(0);
 
     useEffect(() => {
         if (labelSharedValue.value === 0 && value) {
@@ -39,7 +41,7 @@ const useTextField = ({
         const topMargin = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [0, -28],
+            [0, -(boxHeight.value / 2) - 1],
             "clamp"
         );
 
@@ -48,6 +50,11 @@ const useTextField = ({
             fontSize: withTiming(labelSize, { duration: 150 }),
         };
     });
+
+    const onLayout = useCallback((event: LayoutChangeEvent) => {
+        let { height } = event.nativeEvent.layout;
+        boxHeight.value = height;
+    }, []);
 
     const statusColor =
         status === 'error' ? errorColor
@@ -65,7 +72,8 @@ const useTextField = ({
         labelSharedValue,
         labelAnimation,
         statusColor,
-        labelStatusColor
+        labelStatusColor,
+        onLayout
     };
 }
 

@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { LayoutChangeEvent } from "react-native";
 declare const useTextField: ({ value, fontSize, status, borderColor, focusColor, labelColor, placeHolderColor, errorColor }: {
     value: string;
     fontSize: number;
@@ -18,6 +19,7 @@ declare const useTextField: ({ value, fontSize, status, borderColor, focusColor,
     };
     statusColor: string;
     labelStatusColor: string;
+    onLayout: (event: LayoutChangeEvent) => void;
 };
 export default useTextField;
 //# sourceMappingURL=useTextField.d.ts.map

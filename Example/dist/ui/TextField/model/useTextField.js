@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 var useTextField = function (_a) {
     var value = _a.value, fontSize = _a.fontSize, status = _a.status, borderColor = _a.borderColor, focusColor = _a.focusColor, labelColor = _a.labelColor, placeHolderColor = _a.placeHolderColor, errorColor = _a.errorColor;
     var _b = useState(false), focus = _b[0], setFocus = _b[1];
     var labelSharedValue = useSharedValue(0);
+    var boxHeight = useSharedValue(0);
     useEffect(function () {
         if (labelSharedValue.value === 0 && value) {
             labelSharedValue.value = 1;
@@ -11,12 +12,16 @@ var useTextField = function (_a) {
     }, [value]);
     var labelAnimation = useAnimatedStyle(function () {
         var labelSize = interpolate(labelSharedValue.value, [0, 1], [fontSize, 12], "clamp");
-        var topMargin = interpolate(labelSharedValue.value, [0, 1], [0, -28], "clamp");
+        var topMargin = interpolate(labelSharedValue.value, [0, 1], [0, -(boxHeight.value / 2) - 1], "clamp");
         return {
             top: withTiming(topMargin, { duration: 150 }),
             fontSize: withTiming(labelSize, { duration: 150 }),
         };
     });
+    var onLayout = useCallback(function (event) {
+        var height = event.nativeEvent.layout.height;
+        boxHeight.value = height;
+    }, []);
     var statusColor = status === 'error' ? errorColor
         : focus ? focusColor
             : borderColor;
@@ -30,7 +35,8 @@ var useTextField = function (_a) {
         labelSharedValue: labelSharedValue,
         labelAnimation: labelAnimation,
         statusColor: statusColor,
-        labelStatusColor: labelStatusColor
+        labelStatusColor: labelStatusColor,
+        onLayout: onLayout
     };
 };
 export default useTextField;

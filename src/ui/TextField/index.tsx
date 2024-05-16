@@ -10,7 +10,7 @@ import {
 import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 
-interface Props extends TextInputProps {
+interface Props {
   status?: 'default' | 'error';
   value: string;
   onChangeText: (text: string) => void;
@@ -27,10 +27,11 @@ interface Props extends TextInputProps {
   borderWidth?: number;
   errorMessage?: string;
   fontFamily?: string;
+  textInputProps?: TextInputProps;
+  boxStyle?: 'outline' | 'underline'
 }
 
 /**
- * 높이는 고정 54 입니다. 그에 맞춰 아래 파라미터를 조정해주세요.
  * @param {string} value
  * @param {(text: string) => void} onChangeText
  * @param {string} [label='Placeholder']
@@ -45,6 +46,8 @@ interface Props extends TextInputProps {
  * @param {number} [borderWidth=1.2]
  * @param {number} [paddingHorizontal=14]
  * @param {string} fontFamily
+ * @param {TextInputProps} textInputProps
+ * @param {'outline' | 'underline'} boxStyle
  */
 const TextField = ({
   status = 'default',
@@ -60,10 +63,11 @@ const TextField = ({
   focusColor = '#007AFF',
   errorColor = '#FF3B30',
   borderRadius = 10,
-  paddingHorizontal = 14,
+  paddingHorizontal = 10,
   errorMessage,
   fontFamily,
-  ...props
+  textInputProps,
+  boxStyle = 'outline',
 }: Props) => {
   const {
     focus,
@@ -71,7 +75,8 @@ const TextField = ({
     labelSharedValue,
     labelAnimation,
     statusColor,
-    labelStatusColor
+    labelStatusColor,
+    onLayout
   } = useTextField({
     fontSize,
     status,
@@ -88,11 +93,21 @@ const TextField = ({
       entering={FadeInDown}
       exiting={FadeOut}
     >
-      <View style={{ width: '100%', borderWidth: borderWidth, borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, justifyContent: 'center' }}>
+      <View
+        style={{
+          width: '100%', justifyContent: 'center',
+          ...boxStyle === 'outline' ? { borderWidth: borderWidth } : { borderBottomWidth: borderWidth },
+          borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal
+        }}
+        onLayout={onLayout}
+      >
         <TextInput
-          {...props}
-          style={[props.style, { fontSize: fontSize, width: '100%', height: 54, paddingRight: 25, fontFamily: fontFamily }]}
-          allowFontScaling={false}
+          {...textInputProps}
+          style={[
+            { paddingVertical: 14 }, // 디폴트
+            textInputProps?.style,   // 유저 스타일
+            { fontSize: fontSize, width: '100%', paddingRight: 25, fontFamily: fontFamily } // 고정 스타일
+          ]}
           value={value}
           onFocus={() => {
             setFocus(true);
@@ -109,7 +124,6 @@ const TextField = ({
 
         <View pointerEvents="none" style={{ position: 'absolute' }}>
           <Animated.Text
-            allowFontScaling={false}
             style={[
               labelAnimation,
               {
@@ -134,7 +148,7 @@ const TextField = ({
               onPress={() => { onChangeText?.(''); }}>
               <Image
                 source={require('../../assets/ic_x.png')}
-                style={{ width: 16, height: 16, tintColor: '#5E696E' }}
+                style={{ width: 14, height: 14, tintColor: '#5E696E' }}
               />
             </TouchableOpacity>
           )
@@ -156,7 +170,7 @@ const TextField = ({
           </View>
         )
       }
-    </Animated.View>
+    </Animated.View >
   );
 };
 

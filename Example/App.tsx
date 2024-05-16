@@ -70,14 +70,17 @@ function App(): React.JSX.Element {
         </View>
 
         <TextField
+          boxStyle='underline'
           label="닉네임"
           value={nick}
           onChangeText={(text) => {
             setNick(text);
           }}
-          multiline={false}
-          style={{color: 'red'}}
           labelColor='blue'
+          textInputProps={{
+            multiline: false,
+            style: { color: 'red' }
+          }}
         />
 
         <TextField
@@ -86,9 +89,11 @@ function App(): React.JSX.Element {
           onChangeText={(text) => {
             setEmail(text);
           }}
-          multiline={false}
           status={emailError ? 'error' : 'default'}
           errorMessage={emailError}
+          textInputProps={{
+            multiline: false,
+          }}
         />
 
         <TextField
@@ -97,7 +102,9 @@ function App(): React.JSX.Element {
           onChangeText={(text) => {
             setPhone(text);
           }}
-          multiline={false}
+          textInputProps={{
+            multiline: false,
+          }}
         />
 
         <RadioGroup
