@@ -2,10 +2,33 @@
 https://github.com/0610studio/rn-layout/assets/39161206/722a938f-6298-4149-91bf-2996aeffea4a
 
 
+## 설치
+
+```bash
+"react-native-gesture-handler": "^2.16.0",
+"react-native-reanimated": "^3.8.1",
+"react-native-safe-area-context": "^4.9.0"
+
+npm i @0610studio/rn-layout
+```
 
 ## 사용법
 
+- App.tsx
+
 ```tsx
+<SafeAreaProvider>
+    <ThemeProvider>
+        ...
+    </ThemeProvider>
+</SafeAreaProvider>
+```
+
+- target component.tsx
+
+```tsx
+const { palette, typography } = useTheme();
+
 <RootView
     edges={['bottom']}
     bottomComponent={
@@ -25,6 +48,13 @@ https://github.com/0610studio/rn-layout/assets/39161206/722a938f-6298-4149-91bf-
         />
     }
 >
+
+    <Text
+        style={[{ marginBottom: 15, marginTop: 30, color: palette.primary.main }, typography.display.large]}
+    >
+        {'회원 가입'}
+    </Text>
+
     <TextField
         label='휴대폰 번호'
         value={phoneNumber}
