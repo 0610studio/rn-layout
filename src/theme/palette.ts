@@ -88,36 +88,6 @@ const INFORMATION = {
   main: '#2768FF',
 };
 
-const TEAL = {
-  0: '#E6F7F7',
-  5: '#D1EFF0',
-  10: '#ADE6E8',
-  20: '#85DBDD',
-  30: '#5CCFD2',
-  40: '#33C3C6',
-  50: '#00B7BB',
-  60: '#00A3A7',
-  70: '#008F92',
-  80: '#007B7D',
-  90: '#006868',
-  100: '#004646',
-};
-
-const PURPLE = {
-  0: '#F7E6F7',
-  5: '#F0D1F0',
-  10: '#E8ADE8',
-  20: '#DD85DD',
-  30: '#D25CD2',
-  40: '#C633C6',
-  50: '#BB00BB',
-  60: '#A700A7',
-  70: '#920092',
-  80: '#7D007D',
-  90: '#680068',
-  100: '#460046',
-};
-
 const GREY = {
   0: '#FFFFFF',
   5: '#F8F8F8',
@@ -159,7 +129,7 @@ const SKY_BLUE = {
   90: '#082732',
 };
 
-const COMMON = {
+export const Colors = {
   primary: PRIMARY,
   secondary: SECONDARY,
   danger: DANGER,
@@ -170,90 +140,68 @@ const COMMON = {
   grey: GREY,
   blue: BLUE,
   skyBlue: SKY_BLUE,
-  teal: TEAL,
-  purple: PURPLE,
 };
+
+export const TextColors = {
+  title: GREY[90],
+  body: GREY[90],
+  detail: GREY[70],
+  disabled: GREY[50],
+  danger: DANGER[60],
+  warning: WARNING[60],
+  success: SUCCESS[60],
+  information: INFORMATION[60],
+};
+
+export const BorderColors = {
+  box: GREY[20],
+  active: PRIMARY[50],
+  base: GREY[60],
+  danger: DANGER[10],
+  warning: WARNING[10],
+  success: SUCCESS[10],
+  information: INFORMATION[10],
+};
+
+export const BackgroundColors = {
+  paper: GREY[5],
+  base: GREY[0],
+  layer1: GREY[5],
+  layer2: SECONDARY[5],
+  danger: DANGER[5],
+  warning: WARNING[5],
+  success: SUCCESS[5],
+  information: INFORMATION[5],
+};
+
+export const ActionColors = {
+  hover: PRIMARY[60],
+  pressed: PRIMARY[70],
+  disable: GREY[20]
+};
+
+export const DividerColor = (GREY[50] + '40'); // '0.25';
 
 export default function palette({ mode = 'light' }: { mode: 'light' | 'dark' }): Theme {
   const light = {
-    ...COMMON,
     mode: mode,
-    text: {
-      title: GREY[90],
-      body: GREY[90],
-      detail: GREY[70],
-      disabled: GREY[50],
-      danger: DANGER[60],
-      warning: WARNING[60],
-      success: SUCCESS[60],
-      information: INFORMATION[60],
-    },
-    border: {
-      box: GREY[20],
-      active: PRIMARY[50],
-      base: GREY[60],
-      danger: DANGER[10],
-      warning: WARNING[10],
-      success: SUCCESS[10],
-      information: INFORMATION[10],
-    },
-    background: {
-      paper: GREY[5],
-      base: GREY[0],
-      layer1: GREY[5],
-      layer2: SECONDARY[5],
-      danger: DANGER[5],
-      warning: WARNING[5],
-      success: SUCCESS[5],
-      information: INFORMATION[5],
-    },
-    action: {
-      hover: PRIMARY[60],
-      pressed: PRIMARY[70],
-      disable: GREY[20]
-    },
-    divider: (GREY[50] + '40'), // '0.25'
+    ...Colors,
+    text: TextColors,
+    border: BorderColors,
+    background: BackgroundColors,
+    action: ActionColors,
+    divider: DividerColor
   };
 
   // TODO: 다크 모드 색상값. 현 light 모드와 동일하게 설정되어 있음.
   const dark = {
-    ...COMMON,
     mode: mode,
-    text: {
-      title: GREY[90],
-      body: GREY[90],
-      detail: GREY[70],
-      disabled: GREY[50],
-      danger: DANGER[60],
-      warning: WARNING[60],
-      success: SUCCESS[60],
-      information: INFORMATION[60],
-    },
-    border: {
-      box: GREY[20],
-      active: PRIMARY[50],
-      base: GREY[60],
-      danger: DANGER[10],
-      warning: WARNING[10],
-      success: SUCCESS[10],
-      information: INFORMATION[10],
-    },
-    background: {
-      paper: GREY[5],
-      base: GREY[0],
-      layer1: GREY[5],
-      layer2: SECONDARY[5],
-      danger: DANGER[5],
-      warning: WARNING[5],
-      success: SUCCESS[5],
-      information: INFORMATION[5],
-    },
-    action: {
-      hover: PRIMARY[60],
-      pressed: PRIMARY[70],
-      disable: GREY[20]
-    },
-    divider: (GREY[50] + '40'), // '0.25'
+    ...Colors,
+    text: TextColors,
+    border: BorderColors,
+    background: BackgroundColors,
+    action: ActionColors,
+    divider: DividerColor
   };
 
   return mode === 'light' ? light : dark;
