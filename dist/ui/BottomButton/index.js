@@ -24,7 +24,7 @@ var BottomButton = function (_a) {
         };
     }, []);
     var animatedStyle = useAnimatedStyle(function () {
-        var getBottom = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0], 'clamp');
+        var getBottom = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_BOTTOM, 0], 'clamp');
         var getMargin = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_MARGIN_X, 0], 'clamp');
         var getRadius = interpolate(isKeyboardVisible.value, [0, 1], [DEFAULT_BORDER_RADIUS, 0], 'clamp');
         return {

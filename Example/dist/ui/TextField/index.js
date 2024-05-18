@@ -54,7 +54,8 @@ var TextField = function (_a) {
                 paddingVertical: 2,
                 textAlignVertical: 'center',
                 fontFamily: fontFamily,
-                borderRadius: 20
+                borderRadius: 20,
+                overflow: 'hidden'
             }
         ]}>
             {label}

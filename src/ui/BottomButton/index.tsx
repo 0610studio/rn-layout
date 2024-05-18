@@ -59,7 +59,8 @@ const BottomButton = ({
         const getBottom = interpolate(
             isKeyboardVisible.value,
             [0, 1],
-            [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0],
+            [DEFAULT_MARGIN_BOTTOM,  0],
+            // [DEFAULT_MARGIN_BOTTOM, Platform.OS === 'ios' ? (keyboardHeight.value / 3) + 5 : 0],
             'clamp',
         );
 

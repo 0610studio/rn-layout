@@ -68,7 +68,7 @@ const TextField = ({
   focusColor = '#007AFF',
   errorColor = '#FF3B30',
   borderRadius = 10,
-  paddingHorizontal = 10,
+  paddingHorizontal = 15,
   errorMessage,
   fontFamily,
   textInputProps,
@@ -143,7 +143,8 @@ const TextField = ({
                 paddingVertical: 2,
                 textAlignVertical: 'center',
                 fontFamily: fontFamily,
-                borderRadius: 20
+                borderRadius: 20,
+                overflow: 'hidden'
               }
             ]}>
             {label}
