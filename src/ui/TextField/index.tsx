@@ -14,6 +14,7 @@ interface Props {
   status?: 'default' | 'error';
   value: string;
   onChangeText: (text: string) => void;
+  inputBgColor?: string;
   labelBgColor?: string;
   label?: string;
   labelColor?: string;
@@ -29,6 +30,7 @@ interface Props {
   fontFamily?: string;
   textInputProps?: TextInputProps;
   boxStyle?: 'outline' | 'underline'
+  disabled?: boolean
 }
 
 /**
@@ -37,6 +39,7 @@ interface Props {
  * @param {string} [label='Placeholder']
  * @param {string} [labelColor='#757575']
  * @param {string} [placeHolderColor='#B1B1B1']
+ * @param {string} [inputBgColor='white']
  * @param {string} [labelBgColor='white'] label이 input border 위로 올라갈때 border를 가리기 위한 배경색
  * @param {number} [fontSize=17]
  * @param {string} [borderColor='#E7EDF0']
@@ -48,6 +51,7 @@ interface Props {
  * @param {string} fontFamily
  * @param {TextInputProps} textInputProps
  * @param {'outline' | 'underline'} boxStyle
+ * @param {boolean} disabled
  */
 const TextField = ({
   status = 'default',
@@ -56,6 +60,7 @@ const TextField = ({
   label = 'Placeholder',
   labelColor = '#757575',
   placeHolderColor = '#B1B1B1',
+  inputBgColor = 'white',
   labelBgColor = 'white',
   fontSize = 17,
   borderWidth = 1.2,
@@ -68,6 +73,7 @@ const TextField = ({
   fontFamily,
   textInputProps,
   boxStyle = 'outline',
+  disabled = false
 }: Props) => {
   const {
     focus,
@@ -97,9 +103,11 @@ const TextField = ({
         style={{
           width: '100%', justifyContent: 'center',
           ...boxStyle === 'outline' ? { borderWidth: borderWidth } : { borderBottomWidth: borderWidth },
-          borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal
+          borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal,
+          backgroundColor: inputBgColor
         }}
         onLayout={onLayout}
+        pointerEvents={disabled ? 'none' : 'auto'}
       >
         <TextInput
           {...textInputProps}
@@ -134,7 +142,8 @@ const TextField = ({
                 paddingHorizontal: 5,
                 paddingVertical: 2,
                 textAlignVertical: 'center',
-                fontFamily: fontFamily
+                fontFamily: fontFamily,
+                borderRadius: 20
               }
             ]}>
             {label}

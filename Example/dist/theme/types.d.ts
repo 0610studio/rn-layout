@@ -44,8 +44,6 @@ export interface CommonPalette {
     grey: Record<number, string>;
     blue: Record<number, string>;
     skyBlue: Record<number, string>;
-    teal: Record<number, string>;
-    purple: Record<number, string>;
 }
 export interface Theme extends CommonPalette {
     mode: 'light' | 'dark';

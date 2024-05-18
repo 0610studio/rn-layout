@@ -7,7 +7,7 @@ function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [nick, setNick] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [phone, setPhone] = useState<string>("00-0000-0000");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [radioValue, setRadioValue] = useState<RadioOption>();
@@ -105,6 +105,8 @@ function App(): React.JSX.Element {
           textInputProps={{
             multiline: false,
           }}
+          disabled={true}
+          inputBgColor='rgba(0, 0, 0, 0.03)'
         />
 
         <RadioGroup

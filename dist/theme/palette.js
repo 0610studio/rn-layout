@@ -91,34 +91,6 @@ var INFORMATION = {
     90: '#040A1A',
     main: '#2768FF',
 };
-var TEAL = {
-    0: '#E6F7F7',
-    5: '#D1EFF0',
-    10: '#ADE6E8',
-    20: '#85DBDD',
-    30: '#5CCFD2',
-    40: '#33C3C6',
-    50: '#00B7BB',
-    60: '#00A3A7',
-    70: '#008F92',
-    80: '#007B7D',
-    90: '#006868',
-    100: '#004646',
-};
-var PURPLE = {
-    0: '#F7E6F7',
-    5: '#F0D1F0',
-    10: '#E8ADE8',
-    20: '#DD85DD',
-    30: '#D25CD2',
-    40: '#C633C6',
-    50: '#BB00BB',
-    60: '#A700A7',
-    70: '#920092',
-    80: '#7D007D',
-    90: '#680068',
-    100: '#460046',
-};
 var GREY = {
     0: '#FFFFFF',
     5: '#F8F8F8',
@@ -157,7 +129,7 @@ var SKY_BLUE = {
     80: '#104D63',
     90: '#082732',
 };
-var COMMON = {
+export var Colors = {
     primary: PRIMARY,
     secondary: SECONDARY,
     danger: DANGER,
@@ -167,73 +139,46 @@ var COMMON = {
     grey: GREY,
     blue: BLUE,
     skyBlue: SKY_BLUE,
-    teal: TEAL,
-    purple: PURPLE,
 };
+export var TextColors = {
+    title: GREY[90],
+    body: GREY[90],
+    detail: GREY[70],
+    disabled: GREY[50],
+    danger: DANGER[60],
+    warning: WARNING[60],
+    success: SUCCESS[60],
+    information: INFORMATION[60],
+};
+export var BorderColors = {
+    box: GREY[20],
+    active: PRIMARY[50],
+    base: GREY[60],
+    danger: DANGER[10],
+    warning: WARNING[10],
+    success: SUCCESS[10],
+    information: INFORMATION[10],
+};
+export var BackgroundColors = {
+    paper: GREY[5],
+    base: GREY[0],
+    layer1: GREY[5],
+    layer2: SECONDARY[5],
+    danger: DANGER[5],
+    warning: WARNING[5],
+    success: SUCCESS[5],
+    information: INFORMATION[5],
+};
+export var ActionColors = {
+    hover: PRIMARY[60],
+    pressed: PRIMARY[70],
+    disable: GREY[20]
+};
+export var DividerColor = (GREY[50] + '40');
 export default function palette(_a) {
     var _b = _a.mode, mode = _b === void 0 ? 'light' : _b;
-    var light = __assign(__assign({}, COMMON), { mode: mode, text: {
-            title: GREY[90],
-            body: GREY[90],
-            detail: GREY[70],
-            disabled: GREY[50],
-            danger: DANGER[60],
-            warning: WARNING[60],
-            success: SUCCESS[60],
-            information: INFORMATION[60],
-        }, border: {
-            box: GREY[20],
-            active: PRIMARY[50],
-            base: GREY[60],
-            danger: DANGER[10],
-            warning: WARNING[10],
-            success: SUCCESS[10],
-            information: INFORMATION[10],
-        }, background: {
-            paper: GREY[5],
-            base: GREY[0],
-            layer1: GREY[5],
-            layer2: SECONDARY[5],
-            danger: DANGER[5],
-            warning: WARNING[5],
-            success: SUCCESS[5],
-            information: INFORMATION[5],
-        }, action: {
-            hover: PRIMARY[60],
-            pressed: PRIMARY[70],
-            disable: GREY[20]
-        }, divider: (GREY[50] + '40') });
-    var dark = __assign(__assign({}, COMMON), { mode: mode, text: {
-            title: GREY[90],
-            body: GREY[90],
-            detail: GREY[70],
-            disabled: GREY[50],
-            danger: DANGER[60],
-            warning: WARNING[60],
-            success: SUCCESS[60],
-            information: INFORMATION[60],
-        }, border: {
-            box: GREY[20],
-            active: PRIMARY[50],
-            base: GREY[60],
-            danger: DANGER[10],
-            warning: WARNING[10],
-            success: SUCCESS[10],
-            information: INFORMATION[10],
-        }, background: {
-            paper: GREY[5],
-            base: GREY[0],
-            layer1: GREY[5],
-            layer2: SECONDARY[5],
-            danger: DANGER[5],
-            warning: WARNING[5],
-            success: SUCCESS[5],
-            information: INFORMATION[5],
-        }, action: {
-            hover: PRIMARY[60],
-            pressed: PRIMARY[70],
-            disable: GREY[20]
-        }, divider: (GREY[50] + '40') });
+    var light = __assign(__assign({ mode: mode }, Colors), { text: TextColors, border: BorderColors, background: BackgroundColors, action: ActionColors, divider: DividerColor });
+    var dark = __assign(__assign({ mode: mode }, Colors), { text: TextColors, border: BorderColors, background: BackgroundColors, action: ActionColors, divider: DividerColor });
     return mode === 'light' ? light : dark;
 }
 //# sourceMappingURL=palette.js.map

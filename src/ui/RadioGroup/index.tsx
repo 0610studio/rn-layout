@@ -11,7 +11,8 @@ const RadioGroup = ({
     valueStyle,
     normalColor = '#E7EDF0',
     selectedColor = '#FFA900',
-    minWidth
+    minWidth,
+    disabled = false
 }: {
     options: RadioOption[];
     value?: RadioOption;
@@ -21,6 +22,7 @@ const RadioGroup = ({
     normalColor?: string;
     selectedColor?: string;
     minWidth?: number;
+    disabled?: boolean;
 }) => {
     return (
         <View style={{ flexDirection: 'row', gap: 10, flexWrap: 'wrap' }} {...containerStyle}>
@@ -32,6 +34,7 @@ const RadioGroup = ({
                         <Pressable
                             key={option.index}
                             onPress={() => {
+                                if (disabled) return;
                                 onSelect(option);
                             }}
                             pressedBackgroundColor='transparent'
