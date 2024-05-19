@@ -3,6 +3,7 @@ import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-nat
 import { RootView, Pressable, BottomButton, RadioGroup, TextField } from './dist';
 import { RadioOption } from './dist/ui/types';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+const RADIO_GROUP_WIDTH = (Dimensions.get('window').width - 40) / 2 - 5;
 
 function App(): React.JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -118,6 +119,7 @@ function App(): React.JSX.Element {
               { value: '여자', index: '2' }
             ]}
             value={radioValue}
+            minWidth={RADIO_GROUP_WIDTH}
             onSelect={(value) => {
               setRadioValue(value);
             }}

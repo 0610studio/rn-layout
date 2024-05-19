@@ -10,7 +10,8 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { Pressable as RnPressable } from "react-native";
-import Animated, { FadeInDown, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import AnimatedWrapper from "../atoms/AnimatedWrapper";
 var DEFAULT_DURATION = { duration: 100 };
 ;
 var Pressable = function (_a) {
@@ -22,7 +23,8 @@ var Pressable = function (_a) {
             transform: [{ scale: withTiming(scale, DEFAULT_DURATION) }],
         };
     });
-    return (<RnPressable onPress={onPress} onLongPress={onLongPress} style={function (_a) {
+    return (<AnimatedWrapper style={{ minWidth: minWidth }}>
+            <RnPressable onPress={onPress} onLongPress={onLongPress} style={function (_a) {
             var pressed = _a.pressed;
             pressed ? isButtonPress.value = 1 : isButtonPress.value = 0;
             return {
@@ -32,10 +34,11 @@ var Pressable = function (_a) {
                 minWidth: minWidth
             };
         }}>
-            <Animated.View style={[props.style, boxAnimation]} entering={FadeInDown}>
-                {props.children}
-            </Animated.View>
-        </RnPressable>);
+                <Animated.View style={[props.style, boxAnimation]}>
+                    {props.children}
+                </Animated.View>
+            </RnPressable>
+        </AnimatedWrapper>);
 };
 export default Pressable;
 //# sourceMappingURL=index.js.map

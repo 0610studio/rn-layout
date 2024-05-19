@@ -7,8 +7,9 @@ import {
   View,
   Image,
 } from 'react-native';
-import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
+import AnimatedWrapper from '../atoms/AnimatedWrapper';
 
 interface Props {
   status?: 'default' | 'error';
@@ -45,7 +46,7 @@ interface Props {
  * @param {string} [borderColor='#E7EDF0']
  * @param {string} [focusColor='#007AFF']
  * @param {string} [errorColor='#FF3B30']
- * @param {number} [borderRadius=10]
+ * @param {number} [borderRadius=14]
  * @param {number} [borderWidth=1.2]
  * @param {number} [paddingHorizontal=14]
  * @param {string} fontFamily
@@ -67,7 +68,7 @@ const TextField = ({
   borderColor = '#E7EDF0',
   focusColor = '#007AFF',
   errorColor = '#FF3B30',
-  borderRadius = 10,
+  borderRadius = 14,
   paddingHorizontal = 15,
   errorMessage,
   fontFamily,
@@ -94,11 +95,9 @@ const TextField = ({
     value
   });
 
+
   return (
-    <Animated.View
-      entering={FadeInDown}
-      exiting={FadeOut}
-    >
+    <AnimatedWrapper>
       <View
         style={{
           width: '100%', justifyContent: 'center',
@@ -180,7 +179,7 @@ const TextField = ({
           </View>
         )
       }
-    </Animated.View >
+    </AnimatedWrapper>
   );
 };
 

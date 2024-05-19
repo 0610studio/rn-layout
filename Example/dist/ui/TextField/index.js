@@ -11,10 +11,11 @@ var __assign = (this && this.__assign) || function () {
 };
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View, Image, } from 'react-native';
-import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
+import AnimatedWrapper from '../atoms/AnimatedWrapper';
 var TextField = function (_a) {
-    var _b = _a.status, status = _b === void 0 ? 'default' : _b, value = _a.value, onChangeText = _a.onChangeText, _c = _a.label, label = _c === void 0 ? 'Placeholder' : _c, _d = _a.labelColor, labelColor = _d === void 0 ? '#757575' : _d, _e = _a.placeHolderColor, placeHolderColor = _e === void 0 ? '#B1B1B1' : _e, _f = _a.inputBgColor, inputBgColor = _f === void 0 ? 'white' : _f, _g = _a.labelBgColor, labelBgColor = _g === void 0 ? 'white' : _g, _h = _a.fontSize, fontSize = _h === void 0 ? 17 : _h, _j = _a.borderWidth, borderWidth = _j === void 0 ? 1.2 : _j, _k = _a.borderColor, borderColor = _k === void 0 ? '#E7EDF0' : _k, _l = _a.focusColor, focusColor = _l === void 0 ? '#007AFF' : _l, _m = _a.errorColor, errorColor = _m === void 0 ? '#FF3B30' : _m, _o = _a.borderRadius, borderRadius = _o === void 0 ? 10 : _o, _p = _a.paddingHorizontal, paddingHorizontal = _p === void 0 ? 10 : _p, errorMessage = _a.errorMessage, fontFamily = _a.fontFamily, textInputProps = _a.textInputProps, _q = _a.boxStyle, boxStyle = _q === void 0 ? 'outline' : _q, _r = _a.disabled, disabled = _r === void 0 ? false : _r;
+    var _b = _a.status, status = _b === void 0 ? 'default' : _b, value = _a.value, onChangeText = _a.onChangeText, _c = _a.label, label = _c === void 0 ? 'Placeholder' : _c, _d = _a.labelColor, labelColor = _d === void 0 ? '#757575' : _d, _e = _a.placeHolderColor, placeHolderColor = _e === void 0 ? '#B1B1B1' : _e, _f = _a.inputBgColor, inputBgColor = _f === void 0 ? 'white' : _f, _g = _a.labelBgColor, labelBgColor = _g === void 0 ? 'white' : _g, _h = _a.fontSize, fontSize = _h === void 0 ? 17 : _h, _j = _a.borderWidth, borderWidth = _j === void 0 ? 1.2 : _j, _k = _a.borderColor, borderColor = _k === void 0 ? '#E7EDF0' : _k, _l = _a.focusColor, focusColor = _l === void 0 ? '#007AFF' : _l, _m = _a.errorColor, errorColor = _m === void 0 ? '#FF3B30' : _m, _o = _a.borderRadius, borderRadius = _o === void 0 ? 14 : _o, _p = _a.paddingHorizontal, paddingHorizontal = _p === void 0 ? 15 : _p, errorMessage = _a.errorMessage, fontFamily = _a.fontFamily, textInputProps = _a.textInputProps, _q = _a.boxStyle, boxStyle = _q === void 0 ? 'outline' : _q, _r = _a.disabled, disabled = _r === void 0 ? false : _r;
     var _s = useTextField({
         fontSize: fontSize,
         status: status,
@@ -25,7 +26,7 @@ var TextField = function (_a) {
         errorColor: errorColor,
         value: value
     }), focus = _s.focus, setFocus = _s.setFocus, labelSharedValue = _s.labelSharedValue, labelAnimation = _s.labelAnimation, statusColor = _s.statusColor, labelStatusColor = _s.labelStatusColor, onLayout = _s.onLayout;
-    return (<Animated.View entering={FadeInDown} exiting={FadeOut}>
+    return (<AnimatedWrapper>
       <View style={__assign(__assign({ width: '100%', justifyContent: 'center' }, boxStyle === 'outline' ? { borderWidth: borderWidth } : { borderBottomWidth: borderWidth }), { borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, backgroundColor: inputBgColor })} onLayout={onLayout} pointerEvents={disabled ? 'none' : 'auto'}>
         <TextInput {...textInputProps} style={[
             { paddingVertical: 14 },
@@ -78,7 +79,7 @@ var TextField = function (_a) {
               {errorMessage}
             </Text>
           </View>)}
-    </Animated.View>);
+    </AnimatedWrapper>);
 };
 export default TextField;
 //# sourceMappingURL=index.js.map

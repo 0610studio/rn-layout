@@ -1,5 +1,6 @@
 import { Pressable as RnPressable, ViewProps } from "react-native";
-import Animated, { FadeInDown, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import AnimatedWrapper from "../atoms/AnimatedWrapper";
 
 const DEFAULT_DURATION = { duration: 100 };
 
@@ -37,26 +38,27 @@ const Pressable = ({
     });
 
     return (
-        <RnPressable
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={({ pressed }) => {
-                pressed ? isButtonPress.value = 1 : isButtonPress.value = 0;
-                return {
-                    backgroundColor: pressed ? pressedBackgroundColor : 'transparent',
-                    borderRadius: pressedBackgroundBorderRadius,
-                    flex: flex,
-                    minWidth: minWidth
-                };
-            }}
-        >
-            <Animated.View
-                style={[props.style, boxAnimation]}
-                entering={FadeInDown}
+        <AnimatedWrapper style={{ minWidth: minWidth }}>
+            <RnPressable
+                onPress={onPress}
+                onLongPress={onLongPress}
+                style={({ pressed }) => {
+                    pressed ? isButtonPress.value = 1 : isButtonPress.value = 0;
+                    return {
+                        backgroundColor: pressed ? pressedBackgroundColor : 'transparent',
+                        borderRadius: pressedBackgroundBorderRadius,
+                        flex: flex,
+                        minWidth: minWidth
+                    };
+                }}
             >
-                {props.children}
-            </Animated.View>
-        </RnPressable>
+                <Animated.View
+                    style={[props.style, boxAnimation]}
+                >
+                    {props.children}
+                </Animated.View>
+            </RnPressable>
+        </AnimatedWrapper>
     )
 }
 
