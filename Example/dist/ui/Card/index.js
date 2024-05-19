@@ -10,18 +10,14 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import Animated, { FadeInDown, useSharedValue, withTiming } from 'react-native-reanimated';
-import { calculateRadius } from '../../model/utils';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 ;
 var Card = function (_a) {
-    var borderRadius = _a.borderRadius, props = __rest(_a, ["borderRadius"]);
-    var calcRadius = useSharedValue(0);
-    var handleLayout = function (event) {
-        var _a = event.nativeEvent.layout, width = _a.width, height = _a.height;
-        var calc = calculateRadius(width, height, borderRadius);
-        calcRadius.value = withTiming(calc, { duration: 50 });
-    };
-    return (<Animated.View {...props} style={[props === null || props === void 0 ? void 0 : props.style, { borderRadius: calcRadius }]} onLayout={handleLayout} entering={FadeInDown}>
+    var _b = _a.borderRadius, borderRadius = _b === void 0 ? 14 : _b, props = __rest(_a, ["borderRadius"]);
+    return (<Animated.View {...props} entering={FadeInDown} style={[
+            { borderRadius: borderRadius },
+            props === null || props === void 0 ? void 0 : props.style,
+        ]}>
             {props.children}
         </Animated.View>);
 };
