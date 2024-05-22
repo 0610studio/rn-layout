@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
 
 interface CardProps extends ViewProps {
     borderRadius?: number;
@@ -22,6 +22,7 @@ const Card = ({
         <Animated.View
             {...props}
             entering={FadeInDown}
+            exiting={FadeOut}
             style={[
                 { borderRadius: borderRadius },
                 props?.style,

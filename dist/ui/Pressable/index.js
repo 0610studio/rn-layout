@@ -18,7 +18,7 @@ var Pressable = function (_a) {
     var onPress = _a.onPress, onLongPress = _a.onLongPress, _b = _a.pressedBackgroundColor, pressedBackgroundColor = _b === void 0 ? 'rgba(180, 180, 180, 0.1)' : _b, _c = _a.pressedBackgroundBorderRadius, pressedBackgroundBorderRadius = _c === void 0 ? 16 : _c, _d = _a.flex, flex = _d === void 0 ? undefined : _d, _e = _a.minWidth, minWidth = _e === void 0 ? undefined : _e, props = __rest(_a, ["onPress", "onLongPress", "pressedBackgroundColor", "pressedBackgroundBorderRadius", "flex", "minWidth"]);
     var isButtonPress = useSharedValue(0);
     var boxAnimation = useAnimatedStyle(function () {
-        var scale = interpolate(isButtonPress.value, [0, 1], [1, 0.95], 'clamp');
+        var scale = interpolate(isButtonPress.value, [0, 1], [1, 0.96], 'clamp');
         return {
             transform: [{ scale: withTiming(scale, DEFAULT_DURATION) }],
         };

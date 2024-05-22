@@ -10,11 +10,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOut } from 'react-native-reanimated';
 ;
 var Card = function (_a) {
     var _b = _a.borderRadius, borderRadius = _b === void 0 ? 14 : _b, props = __rest(_a, ["borderRadius"]);
-    return (<Animated.View {...props} entering={FadeInDown} style={[
+    return (<Animated.View {...props} entering={FadeInDown} exiting={FadeOut} style={[
             { borderRadius: borderRadius },
             props === null || props === void 0 ? void 0 : props.style,
         ]}>

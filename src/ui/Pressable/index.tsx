@@ -28,7 +28,7 @@ const Pressable = ({
         const scale = interpolate(
             isButtonPress.value,
             [0, 1],
-            [1, 0.95],
+            [1, 0.96],
             'clamp',
         );
 
