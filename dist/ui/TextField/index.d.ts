@@ -3,7 +3,7 @@ import { TextInputProps } from 'react-native';
 interface Props {
     status?: 'default' | 'error';
     value: string;
-    onChangeText: (text: string) => void;
+    onChangeText?: (text: string) => void;
     inputBgColor?: string;
     labelBgColor?: string;
     label?: string;

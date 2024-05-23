@@ -14,7 +14,7 @@ import AnimatedWrapper from '../atoms/AnimatedWrapper';
 interface Props {
   status?: 'default' | 'error';
   value: string;
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
   inputBgColor?: string;
   labelBgColor?: string;
   label?: string;
