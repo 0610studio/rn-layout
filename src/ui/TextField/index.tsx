@@ -138,7 +138,7 @@ const TextField = ({
                 color: labelStatusColor,
                 left: paddingHorizontal,
                 backgroundColor: labelBgColor,
-                paddingHorizontal: boxStyle === 'outline' ? 8 : 0,
+                paddingHorizontal: boxStyle === 'outline' ? 5 : 0,
                 paddingVertical: 2,
                 textAlignVertical: 'center',
                 fontFamily: fontFamily,
