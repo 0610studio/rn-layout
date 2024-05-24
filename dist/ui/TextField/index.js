@@ -51,11 +51,11 @@ var TextField = function (_a) {
                 color: labelStatusColor,
                 left: paddingHorizontal,
                 backgroundColor: labelBgColor,
-                paddingHorizontal: boxStyle === 'outline' ? 5 : 0,
+                paddingHorizontal: boxStyle === 'outline' ? 8 : 0,
                 paddingVertical: 2,
                 textAlignVertical: 'center',
                 fontFamily: fontFamily,
-                borderRadius: 20,
+                borderRadius: boxStyle === 'outline' ? 20 : 0,
                 overflow: 'hidden'
             }
         ]}>
