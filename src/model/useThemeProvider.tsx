@@ -14,6 +14,7 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    themeFonts,
     children
 }) => {
     // TODO: dark 모드 추가시 mode를 동적인 context로 관리해야됨.
@@ -21,7 +22,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     const isMobile = true;
 
     const paletteCreate = useMemo(() => palette({ mode }), [mode]);
-    const typographyCreate = useMemo(() => typography({ isMobile }), [isMobile]);
+    const typographyCreate = useMemo(() => typography({ isMobile, themeFonts }), [isMobile]);
 
     const themeValue = useMemo(() => ({
         palette: paletteCreate,

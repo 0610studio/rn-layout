@@ -10,11 +10,11 @@ export var useTheme = function () {
     return context;
 };
 export var ThemeProvider = function (_a) {
-    var children = _a.children;
+    var themeFonts = _a.themeFonts, children = _a.children;
     var mode = 'light';
     var isMobile = true;
     var paletteCreate = useMemo(function () { return palette({ mode: mode }); }, [mode]);
-    var typographyCreate = useMemo(function () { return typography({ isMobile: isMobile }); }, [isMobile]);
+    var typographyCreate = useMemo(function () { return typography({ isMobile: isMobile, themeFonts: themeFonts }); }, [isMobile]);
     var themeValue = useMemo(function () { return ({
         palette: paletteCreate,
         typography: typographyCreate,

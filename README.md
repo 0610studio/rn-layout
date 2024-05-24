@@ -18,7 +18,18 @@ npm i @0610studio/rn-layout
 
 ```tsx
 <SafeAreaProvider>
-    <ThemeProvider>
+    <ThemeProvider
+        themeFonts={{
+            100: 'Pretendard-Thin',
+            200: 'Pretendard-ExtraLight',
+            300: 'Pretendard-Light',
+            400: 'Pretendard-Regular',
+            500: 'Pretendard-Medium',
+            600: 'Pretendard-SemiBold',
+            700: 'Pretendard-Bold',
+            800: 'Pretendard-ExtraBold',
+            900: 'Pretendard-Black',
+        }}>
         ...
     </ThemeProvider>
 </SafeAreaProvider>

@@ -67,6 +67,7 @@ interface Typo6Style {
     Xsmall: TextProps['style'];
 }
 export interface TypographyVariants {
+    themeFonts?: ThemeFonts;
     display: Typo3Style;
     heading: Typo3Style;
     title: Typo6Style;
@@ -135,6 +136,18 @@ export interface ThemeProps {
 }
 export interface ThemeProviderProps {
     children: React.ReactNode;
+    themeFonts?: ThemeFonts;
+}
+export interface ThemeFonts {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map
