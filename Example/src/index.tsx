@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, Pressable, BottomButton, RadioGroup, TextField } from '../dist';
+import { RootView, Pressable, BottomButton, RadioGroup, TextField, useTheme } from '../dist';
 import { RadioOption } from '../dist/ui/types';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Typography from '../dist/ui/Typography';
+import ThrottleButton from '../dist/ui/ThrottleButton';
 const RADIO_GROUP_WIDTH = (Dimensions.get('window').width - 40) / 2 - 5;
 
 function LayoutExample(): React.JSX.Element {
@@ -11,8 +13,16 @@ function LayoutExample(): React.JSX.Element {
   const [nick, setNick] = useState<string>("");
   const [phone, setPhone] = useState<string>("00-0000-0000");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [radioValue, setRadioValue] = useState<RadioOption>();
+  const { palette } = useTheme();
+
+  const handleSubmit = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('완료');
+      }, 5000);
+    });
+  };
 
   return (
     <SafeAreaProvider>
@@ -21,7 +31,6 @@ function LayoutExample(): React.JSX.Element {
         bottomComponent={
           <BottomButton
             disabled={buttonDisabled}
-            isLoading={isLoading}
             loadingComponent={
               <ActivityIndicator color="white" />
             }
@@ -30,13 +39,9 @@ function LayoutExample(): React.JSX.Element {
             primaryLabelComponent={
               <Text style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>등록</Text>
             }
-            primaryOnPress={() => {
-              setIsLoading(true);
-              setTimeout(() => {
-                setIsLoading(false);
-                setEmailError('이메일이 중복되었습니다.');
-                setButtonDisabled(true);
-              }, 2000);
+            primaryOnPress={async () => {
+              setEmailError('이메일이 중복되었습니다.');
+              setButtonDisabled(true);
             }}
             // ---
             secondaryButtonStyle={{ height: 55, backgroundColor: '#F3F3F3' }}
@@ -59,7 +64,7 @@ function LayoutExample(): React.JSX.Element {
                 setEmail(prev => prev + '1')
               }}
             >
-              <Text>SleekPressable 버튼</Text>
+              <Typography typo='title.small' style={{ color: 'black' }}>title.small</Typography>
             </Pressable>
 
             <Pressable
@@ -69,7 +74,7 @@ function LayoutExample(): React.JSX.Element {
                 console.log('SleekPressable 버튼 클릭');
               }}
             >
-              <Text>SleekPressable 버튼</Text>
+              <Typography typo='display.medium' style={{ color: 'red' }}>display.medium</Typography>
             </Pressable>
           </View>
 
@@ -123,6 +128,14 @@ function LayoutExample(): React.JSX.Element {
             onSelect={(value) => {
               setRadioValue(value);
             }}
+          />
+
+          <ThrottleButton
+            primaryButtonStyle={{ backgroundColor: palette.primary.main, height: 55, overflow: 'hidden' }}
+            primaryOnPress={async () => { await handleSubmit(); }}
+            primaryLabelComponent={
+              <Typography typo='title.small' style={{ color: 'black' }}>title.small</Typography>
+            }
           />
         </View>
       </RootView>

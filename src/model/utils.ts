@@ -10,3 +10,7 @@ export const calculateRadius = (width: number, height: number, borderRadius: num
     const calc = borderRadius * (radiusRatio > 1 ? radiusRatio / 2 : radiusRatio);
     return calc;
 };
+
+export const withPromise = <T extends unknown[]>(fn: (...args: T) => Promise<unknown>): ((...args: T) => void) => {
+    return (...args) => { void fn(...args) };
+};

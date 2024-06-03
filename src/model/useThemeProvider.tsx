@@ -14,6 +14,7 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    themeColors,
     themeFonts,
     children
 }) => {
@@ -21,7 +22,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     const mode = 'light';
     const isMobile = true;
 
-    const paletteCreate = useMemo(() => palette({ mode }), [mode]);
+    const paletteCreate = useMemo(() => palette({ mode, themeColors }), [mode]);
     const typographyCreate = useMemo(() => typography({ isMobile, themeFonts }), [isMobile]);
 
     const themeValue = useMemo(() => ({

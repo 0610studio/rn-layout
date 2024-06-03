@@ -182,8 +182,8 @@ export const ActionColors = {
 
 export const DividerColor = (GREY[50] + '40'); // '0.25';
 
-export default function palette({ mode = 'light' }: { mode: 'light' | 'dark' }): Theme {
-  const light = {
+export default function palette({ mode = 'light', themeColors }: { mode: 'light' | 'dark'; themeColors?: { light?: Theme; dark?: Theme; } }): Theme {
+  const light = themeColors?.light || {
     mode: mode,
     ...Colors,
     text: TextColors,
@@ -194,7 +194,7 @@ export default function palette({ mode = 'light' }: { mode: 'light' | 'dark' }):
   };
 
   // TODO: 다크 모드 색상값. 현 light 모드와 동일하게 설정되어 있음.
-  const dark = {
+  const dark = themeColors?.dark || {
     mode: mode,
     ...Colors,
     text: TextColors,

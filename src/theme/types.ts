@@ -53,12 +53,12 @@ export interface Theme extends CommonPalette {
     action: ActionTheme;
     divider: string;
 };
-interface Typo3Style {
+export interface Typo3Style {
     large: TextProps['style'];
     medium: TextProps['style'];
     small: TextProps['style'];
 }
-interface Typo6Style {
+export interface Typo6Style {
     XXlarge: TextProps['style'];
     Xlarge: TextProps['style'];
     large: TextProps['style'];
@@ -75,6 +75,10 @@ export interface TypographyVariants {
     detail: Typo3Style;
     label: Typo6Style;
     links: Typo3Style;
+};
+
+export interface TypographyVariantsProps extends TypographyVariants {
+    themeFonts?: ThemeFonts;
 };
 
 export interface TypographyVariantsOptions {
@@ -105,33 +109,38 @@ export interface TypographyVariantsOptions {
     'links.small'?: React.CSSProperties;
 };
 
-export interface TypographyPropsVariantOverrides {
-    'display.large': true;
-    'display.medium': true;
-    'display.small': true;
-    'heading.large': true;
-    'heading.medium': true;
-    'heading.small': true;
-    'title.XXlarge': true;
-    'title.Xlarge': true;
-    'title.large': true;
-    'title.medium': true;
-    'title.small': true;
-    'title.Xsmall': true;
-    'body.large': true;
-    'body.medium': true;
-    'body.small': true;
-    'detail.large': true;
-    'detail.medium': true;
-    'detail.small': true;
-    'label.large': true;
-    'label.medium': true;
-    'label.small': true;
-    'label.Xsmall': true;
-    'links.large': true;
-    'links.medium': true;
-    'links.small': true;
-};
+export type TypoOptions =
+    'display.large' |
+    'display.medium' |
+    'display.small' |
+    'heading.large' |
+    'heading.medium' |
+    'heading.small' |
+    'title.XXlarge' |
+    'title.Xlarge' |
+    'title.large' |
+    'title.medium' |
+    'title.small' |
+    'title.Xsmall' |
+    'body.large' |
+    'body.medium' |
+    'body.small' |
+    'detail.large' |
+    'detail.medium' |
+    'detail.small' |
+    'label.large' |
+    'label.medium' |
+    'label.small' |
+    'label.Xsmall' |
+    'links.large' |
+    'links.medium' |
+    'links.small';
+
+export type TypoStyle = 'display' | 'heading' | 'title' | 'body' | 'detail' | 'label' | 'links';
+
+export type Typo3Size = 'large' | 'medium' | 'small';
+
+export type Typo6Size = 'XXlarge' | 'Xlarge' | 'large' | 'medium' | 'small' | 'Xsmall';
 
 export interface ThemeProps {
     palette: Theme;
@@ -153,4 +162,8 @@ export interface ThemeFonts {
 export interface ThemeProviderProps {
     children: React.ReactNode;
     themeFonts?: ThemeFonts;
+    themeColors?: {
+        light?: Theme;
+        dark?: Theme;
+    };
 };

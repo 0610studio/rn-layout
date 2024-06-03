@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Keyboard, Platform, StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { withPromise } from "../../model/utils";
 
 const DEFAULT_MARGIN_X = 20;
 const DEFAULT_MARGIN_TOP = 0;
@@ -11,9 +12,8 @@ const DURATION = { duration: 250 };
 interface Props {
     loadingComponent?: React.ReactNode;
     disabled?: boolean;
-    isLoading?: boolean;
     // ---
-    primaryOnPress: () => void;
+    primaryOnPress: () => Promise<any>;
     primaryLabelComponent: React.ReactNode;
     primaryButtonStyle?: TouchableOpacityProps['style'];
     // ---
@@ -25,7 +25,6 @@ interface Props {
 const BottomButton = ({
     loadingComponent = <ActivityIndicator />,
     disabled = false,
-    isLoading = false,
     // ---
     primaryLabelComponent,
     primaryOnPress,
@@ -37,6 +36,16 @@ const BottomButton = ({
 }: Props) => {
     const isKeyboardVisible = useSharedValue(0);
     const keyboardHeight = useSharedValue(0);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handlePress = withPromise(async () => {
+        setIsLoading(true);
+        try {
+            await primaryOnPress();
+        } finally {
+            setIsLoading(false);
+        }
+    });
 
     // ** 소프트 키보드 핸들링
     useEffect(() => {
@@ -106,7 +115,7 @@ const BottomButton = ({
             <TouchableOpacity
                 activeOpacity={0.7}
                 style={[primaryButtonStyle, styles.touchContainer]}
-                onPress={primaryOnPress}
+                onPress={handlePress}
                 disabled={disabled || isLoading}
             >
 

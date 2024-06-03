@@ -1,6 +1,6 @@
-import { ThemeFonts, TypographyVariants } from "./types";
+import { ThemeFonts, TypographyVariantsProps } from "./types";
 
-export default function typography({ isMobile = true, themeFonts }: { isMobile?: boolean; themeFonts?: ThemeFonts }): TypographyVariants {
+export default function typography({ isMobile = true, themeFonts }: { isMobile?: boolean; themeFonts?: ThemeFonts }): TypographyVariantsProps {
     return {
         themeFonts: themeFonts,
         display: {
