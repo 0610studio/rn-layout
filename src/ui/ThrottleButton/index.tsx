@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps, ActivityIndicator } from "react-native";
 import { withPromise } from "../../model/utils";
 
-const DEFAULT_MARGIN_X = 20;
+const DEFAULT_MARGIN_X = 0;
 const DEFAULT_MARGIN_TOP = 0;
 const DEFAULT_MARGIN_BOTTOM = 20;
 const DEFAULT_BORDER_RADIUS = 14;
