@@ -15,7 +15,7 @@ const Typography = ({
     const split = typo.split('.');
     const s01 = split[0] as TypoStyle;
     const s02 = split[1] as Typo3Size;
-    return <TextAtom style={[props.style, typography[s01][s02]]}>{props.children}</TextAtom>
+    return <TextAtom {...props} style={[props.style, typography[s01][s02]]}>{props.children}</TextAtom>
 }
 
 export default Typography;
