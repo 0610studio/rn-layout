@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, TouchableOpacityProps, ActivityIndicator } from "react-native";
-import { withPromise } from "../../model/utils";
 
 const DEFAULT_MARGIN_X = 0;
 const DEFAULT_MARGIN_TOP = 0;
@@ -25,15 +24,19 @@ const ThrottleButton = ({
     primaryButtonStyle = {},
 }: Props) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const isThrottle = useRef<boolean>(false);
 
-    const handlePress = withPromise(async () => {
+    const handlePress = useCallback(async () => {
+        if (isThrottle.current) return;
+        isThrottle.current = true;
         setIsLoading(true);
         try {
             await primaryOnPress();
         } finally {
             setIsLoading(false);
+            isThrottle.current = false;
         }
-    });
+    }, [primaryOnPress]);
 
     return (
         <View style={[styles.container]}>
