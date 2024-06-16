@@ -133,27 +133,27 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         label: {
             XXlarge: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 23,
+                fontSize: 21,
             },
             Xlarge: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 21,
+                fontSize: 19,
             },
             large: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 19,
+                fontSize: 17,
             },
             medium: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 17,
+                fontSize: 15,
             },
             small: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 15,
+                fontSize: 13,
             },
             Xsmall: {
                 fontFamily: themeFonts?.[400],
-                fontSize: 13,
+                fontSize: 11,
             }
         },
         links: {
