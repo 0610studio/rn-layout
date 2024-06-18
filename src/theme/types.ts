@@ -142,6 +142,8 @@ export type Typo3Size = 'large' | 'medium' | 'small';
 
 export type Typo6Size = 'XXlarge' | 'Xlarge' | 'large' | 'medium' | 'small' | 'Xsmall';
 
+export type TextColorOptions = 'title' | 'body' | 'detail' | 'disabled' | 'danger' | 'warning' | 'success' | 'information';
+
 export interface ThemeProps {
     palette: Theme;
     typography: TypographyVariants;
