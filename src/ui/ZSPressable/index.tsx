@@ -13,7 +13,7 @@ interface SleekPressableProps extends ViewProps {
     minWidth?: number;
 };
 
-const Pressable = ({
+const ZSPressable = ({
     onPress,
     onLongPress,
     pressedBackgroundColor = 'rgba(180, 180, 180, 0.1)',
@@ -62,4 +62,4 @@ const Pressable = ({
     )
 }
 
-export default Pressable;
+export default ZSPressable;

@@ -3,6 +3,7 @@ import { ViewProps, KeyboardAvoidingView, StatusBar, StyleSheet, Dimensions, Act
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ViewAtom from '../atoms/ViewAtom';
 import ScrollViewAtom from '../atoms/ScrollViewAtom';
+import { useTheme } from '../../model/useThemeProvider';
 
 type RootViewProps = ViewProps & {
   isLoader?: boolean;
@@ -16,11 +17,12 @@ type RootViewProps = ViewProps & {
   showsVerticalScrollIndicator?: boolean;
 };
 
-const RootView = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, scrollViewRef, topComponent, bottomComponent, showsVerticalScrollIndicator = true, ...props }: RootViewProps) => {
+const ZSContainer = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, scrollViewRef, topComponent, bottomComponent, showsVerticalScrollIndicator = true, ...props }: RootViewProps) => {
+  const { palette } = useTheme();
 
   return (
-    <SafeAreaView style={[styles.flex1, { backgroundColor: 'white' }]} edges={edges}>
-      <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || 'white'} />
+    <SafeAreaView style={[{ backgroundColor: palette.background.base }, styles.flex1]} edges={edges}>
+      <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || palette.background.base} />
 
       <KeyboardAvoidingView
         style={styles.flex1}
@@ -56,4 +58,4 @@ const styles = StyleSheet.create({
   scrollContainerStyle: { flexGrow: 1, alignItems: 'center' },
 });
 
-export default RootView;
+export default ZSContainer;

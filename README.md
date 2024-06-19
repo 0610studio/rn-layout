@@ -40,7 +40,7 @@ npm i @0610studio/rn-layout
 ```tsx
 const { palette, typography } = useTheme();
 
-<RootView
+<ZSContainer
     edges={['bottom']}
     bottomComponent={
         <BottomButton
@@ -76,6 +76,6 @@ const { palette, typography } = useTheme();
             console.log('체인지 : ', text);
         }}
     />
-</RootView>
+</ZSContainer>
 
 ```

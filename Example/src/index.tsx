@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
-import { RootView, Pressable, BottomButton, RadioGroup, TextField, useTheme } from '../dist';
+import { ZSContainer, ZSPressable, BottomButton, RadioGroup, TextField, useTheme } from '../dist';
 import { RadioOption } from '../dist/ui/types';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Typography from '../dist/ui/Typography';
@@ -26,7 +26,7 @@ function LayoutExample(): React.JSX.Element {
 
   return (
     <SafeAreaProvider>
-      <RootView
+      <ZSContainer
         edges={['top', 'bottom']}
         bottomComponent={
           <BottomButton
@@ -56,7 +56,7 @@ function LayoutExample(): React.JSX.Element {
         <View style={styles.container}>
 
           <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around' }}>
-            <Pressable
+            <ZSPressable
               style={styles.sleekStyle}
               pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
               onPress={() => {
@@ -65,9 +65,9 @@ function LayoutExample(): React.JSX.Element {
               }}
             >
               <Typography typo='title.small' style={{ color: 'black' }}>title.small</Typography>
-            </Pressable>
+            </ZSPressable>
 
-            <Pressable
+            <ZSPressable
               style={styles.sleekStyle}
               pressedBackgroundColor='rgba(180, 180, 180, 0.1)'
               onPress={() => {
@@ -75,7 +75,7 @@ function LayoutExample(): React.JSX.Element {
               }}
             >
               <Typography typo='display.medium' style={{ color: 'red' }}>display.medium</Typography>
-            </Pressable>
+            </ZSPressable>
           </View>
 
           <TextField
@@ -138,7 +138,7 @@ function LayoutExample(): React.JSX.Element {
             }
           />
         </View>
-      </RootView>
+      </ZSContainer>
     </SafeAreaProvider>
   );
 }
