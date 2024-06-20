@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { LayoutChangeEvent } from "react-native";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
@@ -10,7 +10,8 @@ const useTextField = ({
     focusColor,
     labelColor,
     placeHolderColor,
-    errorColor
+    errorColor,
+    onChangeText
 }: {
     value: string;
     fontSize: number;
@@ -20,6 +21,7 @@ const useTextField = ({
     labelColor: string;
     placeHolderColor: string;
     errorColor: string;
+    onChangeText: any;
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
     const labelSharedValue = useSharedValue(0);
@@ -56,23 +58,39 @@ const useTextField = ({
         boxHeight.value = height;
     }, []);
 
-    const statusColor =
-        status === 'error' ? errorColor
-            : focus ? focusColor
-                : borderColor;
+    const handleFocus = useCallback(() => {
+        setFocus(true);
+        labelSharedValue.value = 1;
+    }, [setFocus, labelSharedValue]);
 
-    const labelStatusColor =
-        status === 'error' ? errorColor
-            : focus ? focusColor
-                : !value ? placeHolderColor
-                    : labelColor;
+    const handleBlur = useCallback(() => {
+        setFocus(false);
+        if (!value) labelSharedValue.value = 0;
+    }, [setFocus, value, labelSharedValue]);
+
+    const handleChangeText = useCallback(
+        (text: string) => {
+            onChangeText?.(text);
+        },
+        [onChangeText]
+    );
+
+    const statusColor = useMemo(() => (
+        status === 'error' ? errorColor : focus ? focusColor : borderColor
+    ), [status, errorColor, focus, focusColor, borderColor]);
+
+    const labelStatusColor = useMemo(() => (
+        status === 'error' ? errorColor : focus ? focusColor : !value ? placeHolderColor : labelColor
+    ), [status, errorColor, focus, focusColor, value, placeHolderColor, labelColor]);
+
     return {
         focus,
-        setFocus,
-        labelSharedValue,
         labelAnimation,
         statusColor,
         labelStatusColor,
+        handleBlur,
+        handleFocus,
+        handleChangeText,
         onLayout
     };
 }

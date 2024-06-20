@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   Text,
   TextInput,
@@ -10,8 +10,12 @@ import {
 import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 import AnimatedWrapper from '../atoms/AnimatedWrapper';
+import { Typo3Size, TypoOptions, TypoStyle } from '../../theme';
+import { useTheme } from '../../model/useThemeProvider';
+import { extractStyle } from '../../model/utils';
 
 interface Props {
+  typo: TypoOptions;
   status?: 'default' | 'error';
   value: string;
   onChangeText?: (text: string) => void;
@@ -28,13 +32,13 @@ interface Props {
   paddingHorizontal?: number;
   borderWidth?: number;
   errorMessage?: string;
-  fontFamily?: string;
   textInputProps?: TextInputProps;
   boxStyle?: 'outline' | 'underline'
   disabled?: boolean
 }
 
 /**
+ * @param {TypoOptions} typo
  * @param {string} value
  * @param {(text: string) => void} onChangeText
  * @param {string} [label='Placeholder']
@@ -42,19 +46,18 @@ interface Props {
  * @param {string} [placeHolderColor='#B1B1B1']
  * @param {string} [inputBgColor='white']
  * @param {string} [labelBgColor='white'] label이 input border 위로 올라갈때 border를 가리기 위한 배경색
- * @param {number} [fontSize=17]
  * @param {string} [borderColor='#E7EDF0']
  * @param {string} [focusColor='#007AFF']
  * @param {string} [errorColor='#FF3B30']
  * @param {number} [borderRadius=14]
  * @param {number} [borderWidth=1.2]
  * @param {number} [paddingHorizontal=14]
- * @param {string} fontFamily
  * @param {TextInputProps} textInputProps
  * @param {'outline' | 'underline'} boxStyle
  * @param {boolean} disabled
  */
 const TextField = ({
+  typo,
   status = 'default',
   value,
   onChangeText,
@@ -63,7 +66,6 @@ const TextField = ({
   placeHolderColor = '#B1B1B1',
   inputBgColor = 'white',
   labelBgColor = 'white',
-  fontSize = 17,
   borderWidth = 1.2,
   borderColor = '#E7EDF0',
   focusColor = '#007AFF',
@@ -71,18 +73,31 @@ const TextField = ({
   borderRadius = 14,
   paddingHorizontal = 15,
   errorMessage,
-  fontFamily,
   textInputProps,
   boxStyle = 'outline',
   disabled = false
 }: Props) => {
+  const { typography } = useTheme();
+  const split = typo.split('.');
+  const s01 = split[0] as TypoStyle;
+  const s02 = split[1] as Typo3Size;
+  const fontSize = useMemo(
+    () => extractStyle(typography[s01][s02], 'fontSize') as number || 17,
+    [typography, s01, s02]
+  );
+  const fontFamily = useMemo(
+    () => extractStyle(typography[s01][s02], 'fontFamily') as string || '',
+    [typography, s01, s02]
+  );
+
   const {
     focus,
-    setFocus,
-    labelSharedValue,
     labelAnimation,
     statusColor,
     labelStatusColor,
+    handleBlur,
+    handleFocus,
+    handleChangeText,
     onLayout
   } = useTextField({
     fontSize,
@@ -92,7 +107,8 @@ const TextField = ({
     labelColor,
     placeHolderColor,
     errorColor,
-    value
+    value,
+    onChangeText,
   });
 
 
@@ -116,17 +132,9 @@ const TextField = ({
             { fontSize: fontSize, width: '100%', paddingRight: 25, fontFamily: fontFamily } // 고정 스타일
           ]}
           value={value}
-          onFocus={() => {
-            setFocus(true);
-            labelSharedValue.value = 1;
-          }}
-          onBlur={() => {
-            setFocus(false);
-            if (!value) labelSharedValue.value = 0;
-          }}
-          onChangeText={text => {
-            onChangeText?.(text);
-          }}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChangeText={handleChangeText}
         />
 
         <View pointerEvents="none" style={{ position: 'absolute' }}>
