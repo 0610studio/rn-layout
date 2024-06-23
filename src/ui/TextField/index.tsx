@@ -1,18 +1,14 @@
 import React, { useMemo } from 'react';
-import {
-  Text,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import { StyleProp, TextInput, TextInputProps, TextStyle, View, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
-import AnimatedWrapper from '../atoms/AnimatedWrapper';
+import ButtonClose from './ui/ButtonClose';
+import ErrorComponent from './ui/ErrorComponent';
 import { Typo3Size, TypoOptions, TypoStyle } from '../../theme';
-import { useTheme } from '../../model/useThemeProvider';
 import { extractStyle } from '../../model/utils';
+import { useTheme } from '../../model/useThemeProvider';
+
+export type BoxStyle = 'outline' | 'underline' | 'apple';
 
 interface Props {
   typo: TypoOptions;
@@ -33,28 +29,36 @@ interface Props {
   borderWidth?: number;
   errorMessage?: string;
   textInputProps?: TextInputProps;
-  boxStyle?: 'outline' | 'underline'
-  disabled?: boolean
+  boxStyle?: BoxStyle;
+  appleBoxStyle?: 'top' | 'middle' | 'bottom';
+  disabled?: boolean;
+  allowFontScaling?: boolean;
 }
 
 /**
- * @param {TypoOptions} typo
- * @param {string} value
- * @param {(text: string) => void} onChangeText
- * @param {string} [label='Placeholder']
- * @param {string} [labelColor='#757575']
- * @param {string} [placeHolderColor='#B1B1B1']
- * @param {string} [inputBgColor='white']
- * @param {string} [labelBgColor='white'] label이 input border 위로 올라갈때 border를 가리기 위한 배경색
- * @param {string} [borderColor='#E7EDF0']
- * @param {string} [focusColor='#007AFF']
- * @param {string} [errorColor='#FF3B30']
- * @param {number} [borderRadius=14]
- * @param {number} [borderWidth=1.2]
- * @param {number} [paddingHorizontal=14]
- * @param {TextInputProps} textInputProps
- * @param {'outline' | 'underline'} boxStyle
- * @param {boolean} disabled
+ * TextField 컴포넌트
+ * @param {TypoOptions} typo - 타이포그래피 옵션
+ * @param {string} value - 텍스트 입력의 현재 값
+ * @param {(text: string) => void} onChangeText - 텍스트 변경을 처리하는 함수
+ * @param {string} [label='Placeholder'] - 텍스트 입력의 라벨
+ * @param {string} [labelColor='#757575'] - 라벨 텍스트의 색상
+ * @param {string} [placeHolderColor='#B1B1B1'] - 플레이스홀더 텍스트의 색상
+ * @param {string} [inputBgColor='white'] - 입력 필드의 배경 색상
+ * @param {string} [labelBgColor='white'] - 라벨이 입력 테두리 위로 올라갈 때 라벨의 배경 색상
+ * @param {string} [borderColor='#E7EDF0'] - 입력 필드의 테두리 색상
+ * @param {string} [focusColor='#007AFF'] - 입력 필드가 포커스될 때의 테두리 색상
+ * @param {string} [errorColor='#FF3B30'] - 오류가 발생했을 때의 테두리 및 텍스트 색상
+ * @param {number} [borderRadius=14] - 입력 필드의 테두리 반경
+ * @param {number} [borderWidth=1.2] - 입력 필드의 테두리 너비
+ * @param {number} [paddingHorizontal=14] - 입력 필드의 가로 패딩
+ * @param {string} [status='default'] - 입력 필드의 상태 (default 또는 error)
+ * @param {string} [errorMessage] - 오류가 발생했을 때 표시되는 오류 메시지
+ * @param {TextInputProps} [textInputProps] - TextInput 컴포넌트에 대한 추가 속성
+ * @param {'outline' | 'underline' | 'apple'} [boxStyle='outline'] - 입력 상자의 스타일
+ * @param {'top' | 'middle' | 'bottom'} [appleBoxStyle] - 애플 스타일 상자의 스타일
+ * @param {boolean} [disabled=false] - 입력 필드의 비활성화 여부
+ * @param {boolean} [allowFontScaling=false] - 폰트 크기 조정 허용 여부
+ * @returns {JSX.Element}
  */
 const TextField = ({
   typo,
@@ -75,20 +79,14 @@ const TextField = ({
   errorMessage,
   textInputProps,
   boxStyle = 'outline',
-  disabled = false
-}: Props) => {
+  appleBoxStyle,
+  disabled = false,
+  allowFontScaling = false,
+}: Props): JSX.Element => {
   const { typography } = useTheme();
-  const split = typo.split('.');
-  const s01 = split[0] as TypoStyle;
-  const s02 = split[1] as Typo3Size;
-  const fontSize = useMemo(
-    () => extractStyle(typography[s01][s02], 'fontSize') as number || 17,
-    [typography, s01, s02]
-  );
-  const fontFamily = useMemo(
-    () => extractStyle(typography[s01][s02], 'fontFamily') as string || '',
-    [typography, s01, s02]
-  );
+  const [s01, s02] = typo.split('.') as [TypoStyle, Typo3Size];
+  const fontSize = useMemo(() => extractStyle(typography[s01][s02], 'fontSize') as number || 17, [typography, s01, s02]);
+  const fontFamily = useMemo(() => extractStyle(typography[s01][s02], 'fontFamily') as string || '', [typography, s01, s02]);
 
   const {
     focus,
@@ -109,18 +107,48 @@ const TextField = ({
     errorColor,
     value,
     onChangeText,
+    boxStyle
   });
 
+  const containerStyle: StyleProp<ViewStyle> = {
+    width: '100%', justifyContent: 'center',
+    borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal,
+    backgroundColor: inputBgColor,
+    paddingTop: boxStyle === 'apple' ? 13 : 0,
+    ...(boxStyle === 'outline' || boxStyle === 'apple') ? { borderWidth: borderWidth } :
+      boxStyle === 'underline' ? { borderBottomWidth: borderWidth } : {},
+    ...(appleBoxStyle === 'top' ? {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+      borderBottomWidth: borderWidth / 2
+    } : appleBoxStyle === 'middle' ? {
+      borderRadius: 0,
+      borderTopWidth: borderWidth / 2,
+      borderBottomWidth: borderWidth / 2
+    } : appleBoxStyle === 'bottom' ? {
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderTopWidth: borderWidth / 2
+    } : {})
+  };
+
+  const labelStyle: StyleProp<TextStyle> = {
+    fontSize: fontSize,
+    color: labelStatusColor,
+    left: paddingHorizontal,
+    backgroundColor: labelBgColor,
+    paddingHorizontal: boxStyle === 'outline' ? 5 : 0,
+    paddingVertical: 2,
+    textAlignVertical: 'center',
+    fontFamily: fontFamily,
+    borderRadius: boxStyle === 'outline' ? 20 : 0,
+    overflow: 'hidden'
+  };
 
   return (
-    <AnimatedWrapper>
+    <>
       <View
-        style={{
-          width: '100%', justifyContent: 'center',
-          ...boxStyle === 'outline' ? { borderWidth: borderWidth } : { borderBottomWidth: borderWidth },
-          borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal,
-          backgroundColor: inputBgColor
-        }}
+        style={containerStyle}
         onLayout={onLayout}
         pointerEvents={disabled ? 'none' : 'auto'}
       >
@@ -135,59 +163,26 @@ const TextField = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChangeText={handleChangeText}
+          allowFontScaling={allowFontScaling}
         />
 
         <View pointerEvents="none" style={{ position: 'absolute' }}>
           <Animated.Text
-            style={[
-              labelAnimation,
-              {
-                fontSize: fontSize,
-                color: labelStatusColor,
-                left: paddingHorizontal,
-                backgroundColor: labelBgColor,
-                paddingHorizontal: boxStyle === 'outline' ? 5 : 0,
-                paddingVertical: 2,
-                textAlignVertical: 'center',
-                fontFamily: fontFamily,
-                borderRadius: boxStyle === 'outline' ? 20 : 0,
-                overflow: 'hidden'
-              }
-            ]}>
+            allowFontScaling={allowFontScaling}
+            style={[labelAnimation, labelStyle]}>
             {label}
           </Animated.Text>
         </View>
 
         {
-          value && focus && (
-            <TouchableOpacity style={{ position: 'absolute', padding: 3, right: 15, borderRadius: 30, backgroundColor: '#e6e6e6', justifyContent: 'center', alignItems: 'center' }}
-              hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
-              onPress={() => { onChangeText?.(''); }}>
-              <Image
-                source={require('../../assets/ic_x.png')}
-                style={{ width: 14, height: 14, tintColor: '#5E696E' }}
-              />
-            </TouchableOpacity>
-          )
+          (value && focus) && <ButtonClose onChangeText={onChangeText} />
         }
       </View>
 
       {
-        status === 'error' && errorMessage && (
-          <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 3, marginTop: 5 }}>
-            <View style={{ width: 18, height: 18, justifyContent: 'center', alignItems: 'center', borderRadius: 30, backgroundColor: errorColor }}>
-              <Text allowFontScaling={false} style={{ fontWeight: 'bold', color: 'white', textAlign: 'center', textAlignVertical: 'center', fontSize: 11, fontFamily: fontFamily }}>
-                {`!`}
-              </Text>
-            </View>
-
-            <Text allowFontScaling={false} style={{ marginLeft: 5, fontSize: 14, color: errorColor, fontFamily: fontFamily }}>
-              {errorMessage}
-            </Text>
-          </View>
-        )
+        (status === 'error' && errorMessage) && <ErrorComponent errorMessage={errorMessage} errorColor={errorColor} fontFamily={fontFamily} />
       }
-    </AnimatedWrapper>
+    </>
   );
 };
 

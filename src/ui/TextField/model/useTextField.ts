@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LayoutChangeEvent } from "react-native";
 import { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { BoxStyle } from "..";
 
 const useTextField = ({
     value,
@@ -11,7 +12,8 @@ const useTextField = ({
     labelColor,
     placeHolderColor,
     errorColor,
-    onChangeText
+    onChangeText,
+    boxStyle
 }: {
     value: string;
     fontSize: number;
@@ -22,6 +24,7 @@ const useTextField = ({
     placeHolderColor: string;
     errorColor: string;
     onChangeText: any;
+    boxStyle: BoxStyle;
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
     const labelSharedValue = useSharedValue(0);
@@ -37,13 +40,13 @@ const useTextField = ({
         const labelSize = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [fontSize, 12],
+            [fontSize + (boxStyle === 'apple' ? 5 : 0), boxStyle === 'apple' ? 10 : 12],
             "clamp"
         );
         const topMargin = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [0, -(boxHeight.value / 2) - 1],
+            [0, -(boxHeight.value / 2) - 1 + (boxStyle === 'apple' ? 18 : 0)],
             "clamp"
         );
 
@@ -68,12 +71,9 @@ const useTextField = ({
         if (!value) labelSharedValue.value = 0;
     }, [setFocus, value, labelSharedValue]);
 
-    const handleChangeText = useCallback(
-        (text: string) => {
-            onChangeText?.(text);
-        },
-        [onChangeText]
-    );
+    const handleChangeText = useCallback((text: string) => {
+        onChangeText?.(text);
+    }, [onChangeText]);
 
     const statusColor = useMemo(() => (
         status === 'error' ? errorColor : focus ? focusColor : borderColor
