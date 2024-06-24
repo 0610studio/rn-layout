@@ -4,14 +4,14 @@ import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 import ButtonClose from './ui/ButtonClose';
 import ErrorComponent from './ui/ErrorComponent';
-import { Typo3Size, TypoOptions, TypoStyle } from '../../theme';
+import { Colors, Typo3Size, TypoOptions, TypoStyle } from '../../theme';
 import { extractStyle } from '../../model/utils';
 import { useTheme } from '../../model/useThemeProvider';
 
 export type BoxStyle = 'outline' | 'underline' | 'apple';
 
 interface Props {
-  typo: TypoOptions;
+  typo?: TypoOptions;
   status?: 'default' | 'error';
   value: string;
   onChangeText?: (text: string) => void;
@@ -61,7 +61,7 @@ interface Props {
  * @returns {JSX.Element}
  */
 const TextField = ({
-  typo,
+  typo = "detail.medium",
   status = 'default',
   value,
   onChangeText,
@@ -164,6 +164,7 @@ const TextField = ({
           onBlur={handleBlur}
           onChangeText={handleChangeText}
           allowFontScaling={allowFontScaling}
+          selectionColor={Colors.grey[70]}
         />
 
         <View pointerEvents="none" style={{ position: 'absolute' }}>

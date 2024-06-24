@@ -5,20 +5,18 @@ import TextAtom from "../atoms/TextAtom"
 import { TextColorOptions } from "../../theme/types";
 
 interface Props extends TextProps {
-    typo: TypoOptions;
+    typo?: TypoOptions;
     color?: TextColorOptions;
 }
 
 const Typography = ({
-    typo,
-    color,
+    typo = 'detail.medium',
+    color = 'body',
     ...props
 }: Props) => {
     const { typography, palette } = useTheme();
-    const split = typo.split('.');
-    const s01 = split[0] as TypoStyle;
-    const s02 = split[1] as Typo3Size;
-    return <TextAtom {...props} style={[props.style, typography[s01][s02], color && { color: palette.text[color] }]}>{props.children}</TextAtom>
+    const [s01, s02] = typo.split('.') as [TypoStyle, Typo3Size];
+    return <TextAtom {...props} style={[typography[s01][s02], { color: palette.text[color] }, props.style]}>{props.children}</TextAtom>
 }
 
 export default Typography;
