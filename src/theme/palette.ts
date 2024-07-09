@@ -151,6 +151,8 @@ export const TextColors = {
   warning: WARNING[60],
   success: SUCCESS[60],
   information: INFORMATION[60],
+  white: '#fff',
+  black: '#000'
 };
 
 export const BorderColors = {

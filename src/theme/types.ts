@@ -28,6 +28,8 @@ export interface TextTheme {
     warning: string;
     success: string;
     information: string;
+    white: string;
+    black: string;
 };
 export interface ActionTheme {
     hover: string;
@@ -142,7 +144,7 @@ export type Typo3Size = 'large' | 'medium' | 'small';
 
 export type Typo6Size = 'XXlarge' | 'Xlarge' | 'large' | 'medium' | 'small' | 'Xsmall';
 
-export type TextColorOptions = 'title' | 'body' | 'detail' | 'disabled' | 'danger' | 'warning' | 'success' | 'information';
+export type TextColorOptions = 'title' | 'body' | 'detail' | 'disabled' | 'danger' | 'warning' | 'success' | 'information' | 'white' | 'black';
 
 export interface ThemeProps {
     palette: Theme;
