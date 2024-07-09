@@ -11,11 +11,13 @@ interface SleekPressableProps extends ViewProps {
     pressedBackgroundBorderRadius?: number;
     flex?: number;
     minWidth?: number;
+    isAnimation?: boolean;
 };
 
 const ZSPressable = ({
     onPress,
     onLongPress,
+    isAnimation = true,
     pressedBackgroundColor = 'rgba(180, 180, 180, 0.1)',
     pressedBackgroundBorderRadius = 16,
     flex = undefined,
@@ -38,7 +40,7 @@ const ZSPressable = ({
     });
 
     return (
-        <AnimatedWrapper style={{ minWidth: minWidth }}>
+        <AnimatedWrapper isAnimation style={{ minWidth: minWidth }}>
             <RnPressable
                 onPress={onPress}
                 onLongPress={onLongPress}
@@ -52,9 +54,7 @@ const ZSPressable = ({
                     };
                 }}
             >
-                <Animated.View
-                    style={[props.style, boxAnimation]}
-                >
+                <Animated.View style={[props.style, boxAnimation]}>
                     {props.children}
                 </Animated.View>
             </RnPressable>
