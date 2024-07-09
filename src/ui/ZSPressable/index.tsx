@@ -40,7 +40,7 @@ const ZSPressable = ({
     });
 
     return (
-        <AnimatedWrapper isAnimation style={{ minWidth: minWidth }}>
+        <AnimatedWrapper isAnimation={isAnimation} style={{ minWidth: minWidth }}>
             <RnPressable
                 onPress={onPress}
                 onLongPress={onLongPress}
