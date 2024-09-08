@@ -13,7 +13,8 @@ const useTextField = ({
     placeHolderColor,
     errorColor,
     onChangeText,
-    boxStyle
+    boxStyle,
+    isTextArea
 }: {
     value: string;
     fontSize: number;
@@ -25,6 +26,7 @@ const useTextField = ({
     errorColor: string;
     onChangeText: any;
     boxStyle: BoxStyle;
+    isTextArea: boolean;
 }) => {
     const [focus, setFocus] = useState<boolean>(false);
     const labelSharedValue = useSharedValue(0);
@@ -40,13 +42,16 @@ const useTextField = ({
         const labelSize = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [fontSize + (boxStyle === 'apple' ? 5 : 0), boxStyle === 'apple' ? 10 : 12],
+            [fontSize + ((boxStyle === 'apple') ? 5 : 0), (boxStyle === 'apple') ? 10 : 12],
             "clamp"
         );
         const topMargin = interpolate(
             labelSharedValue.value,
             [0, 1],
-            [0, -(boxHeight.value / 2) - 1 + (boxStyle === 'apple' ? 18 : 0)],
+            [
+                isTextArea ? 12 : 0,
+                isTextArea ? -12 : -(boxHeight.value / 2) - 1 + (boxStyle === 'apple' ? 18 : 0)
+            ],
             "clamp"
         );
 

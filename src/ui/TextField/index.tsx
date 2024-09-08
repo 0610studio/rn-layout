@@ -33,6 +33,7 @@ interface Props {
   appleBoxStyle?: 'top' | 'middle' | 'bottom';
   disabled?: boolean;
   allowFontScaling?: boolean;
+  isTextArea?: boolean;
 }
 
 /**
@@ -58,6 +59,7 @@ interface Props {
  * @param {'top' | 'middle' | 'bottom'} [appleBoxStyle] - 애플 스타일 상자의 스타일
  * @param {boolean} [disabled=false] - 입력 필드의 비활성화 여부
  * @param {boolean} [allowFontScaling=false] - 폰트 크기 조정 허용 여부
+ * @param {boolean} [isTextArea=false]
  * @returns {JSX.Element}
  */
 const TextField = ({
@@ -82,6 +84,7 @@ const TextField = ({
   appleBoxStyle,
   disabled = false,
   allowFontScaling = false,
+  isTextArea = false
 }: Props): JSX.Element => {
   const { typography } = useTheme();
   const [s01, s02] = typo.split('.') as [TypoStyle, Typo3Size];
@@ -107,11 +110,12 @@ const TextField = ({
     errorColor,
     value,
     onChangeText,
-    boxStyle
+    boxStyle,
+    isTextArea
   });
 
   const containerStyle: StyleProp<ViewStyle> = {
-    width: '100%', justifyContent: 'flex-start',
+    width: '100%', justifyContent: isTextArea ? 'flex-start' : 'center',
     borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal,
     backgroundColor: inputBgColor,
     paddingTop: boxStyle === 'apple' ? 13 : 0,
