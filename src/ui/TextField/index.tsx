@@ -111,7 +111,7 @@ const TextField = ({
   });
 
   const containerStyle: StyleProp<ViewStyle> = {
-    width: '100%', justifyContent: 'center',
+    width: '100%', justifyContent: 'flex-start',
     borderColor: statusColor, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal,
     backgroundColor: inputBgColor,
     paddingTop: boxStyle === 'apple' ? 13 : 0,

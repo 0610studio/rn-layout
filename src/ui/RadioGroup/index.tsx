@@ -1,7 +1,8 @@
-import { Text, TextProps, ViewProps } from "react-native";
+import { ViewProps } from "react-native";
 import Pressable from "../ZSPressable";
 import { RadioOption } from "../types";
 import ViewAtom from "../atoms/ViewAtom";
+import Typography, { TypographyProps } from "../Typography";
 
 const RadioGroup = ({
     options,
@@ -18,7 +19,7 @@ const RadioGroup = ({
     value?: RadioOption;
     onSelect: (value: RadioOption) => void;
     containerStyle?: ViewProps;
-    valueStyle?: TextProps;
+    valueStyle?: TypographyProps;
     normalColor?: string;
     selectedColor?: string;
     minWidth?: number;
@@ -45,12 +46,9 @@ const RadioGroup = ({
                                 <ViewAtom style={{ width: 20, height: 20, borderWidth: 1, borderRadius: 10, borderColor: setColor, justifyContent: 'center', alignItems: 'center' }}>
                                     <ViewAtom style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: setColor }}></ViewAtom>
                                 </ViewAtom>
-                                <Text
-                                    style={{ color: '#757575', marginLeft: 10, fontSize: 17 }}
-                                    {...valueStyle}
-                                >
+                                <Typography style={{ marginLeft: 10}} {...valueStyle}>
                                     {option.value}
-                                </Text>
+                                </Typography>
                             </ViewAtom>
                         </Pressable>
                     )
