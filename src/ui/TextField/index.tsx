@@ -180,7 +180,7 @@ const TextField = ({
         </View>
 
         {
-          (value && focus) && <ButtonClose onChangeText={onChangeText} />
+          (value && focus) && <ButtonClose marginTop={isTextArea ? 13 : undefined} onChangeText={onChangeText} />
         }
       </View>
 
