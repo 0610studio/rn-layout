@@ -1,10 +1,9 @@
 import { ViewProps } from "react-native";
 import Animated, { BaseAnimationBuilder, EntryExitAnimationFunction, FadeOut } from "react-native-reanimated";
-import { ReanimatedKeyframe } from "react-native-reanimated/lib/typescript/reanimated2/layoutReanimation/animationBuilder/Keyframe";
 import ViewAtom from "../atoms/ViewAtom";
 import { useTheme } from "../../model/useThemeProvider";
 
-type EntryOrExitLayoutType = BaseAnimationBuilder | typeof BaseAnimationBuilder | EntryExitAnimationFunction | ReanimatedKeyframe;
+type EntryOrExitLayoutType = BaseAnimationBuilder | typeof BaseAnimationBuilder | EntryExitAnimationFunction;
 
 interface ZSViewProps extends ViewProps {
     animation: EntryOrExitLayoutType
