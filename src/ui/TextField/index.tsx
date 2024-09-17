@@ -58,7 +58,7 @@ interface Props {
  * @param {'outline' | 'underline' | 'apple'} [boxStyle='outline'] - 입력 상자의 스타일
  * @param {'top' | 'middle' | 'bottom'} [appleBoxStyle] - 애플 스타일 상자의 스타일
  * @param {boolean} [disabled=false] - 입력 필드의 비활성화 여부
- * @param {boolean} [allowFontScaling=false] - 폰트 크기 조정 허용 여부
+ * @param {boolean} [allowFontScaling=true] - 폰트 크기 조정 허용 여부
  * @param {boolean} [isTextArea=false]
  * @returns {JSX.Element}
  */
@@ -83,7 +83,7 @@ const TextField = ({
   boxStyle = 'outline',
   appleBoxStyle,
   disabled = false,
-  allowFontScaling = false,
+  allowFontScaling = true,
   isTextArea = false
 }: Props): JSX.Element => {
   const { typography } = useTheme();

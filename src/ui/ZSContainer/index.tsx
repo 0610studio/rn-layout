@@ -37,44 +37,45 @@ const ZSContainer = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayed(false);
-    }, 300);
+    }, 200);
     return () => clearTimeout(timer);
   }, []);
-
-
-  // ---
-  if (isDelayed) return null;
 
   return (
     <SafeAreaView style={[{ backgroundColor: palette.background.base }, styles.flex1]} edges={edges}>
       <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || palette.background.base} />
 
-      <KeyboardAvoidingView
-        style={styles.flex1}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled
-      >
-        {topComponent && topComponent}
+      {
+        !isDelayed ? (
+          <KeyboardAvoidingView
+            style={styles.flex1}
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            enabled
+          >
+            {topComponent && topComponent}
 
-        {
-          isLoader ? (loadingComponent)
-            : (
-              isScrollView ? (
-                <ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator={showsVerticalScrollIndicator} keyboardShouldPersistTaps="handled">
-                  <ViewAtom style={[styles.flex1, props.style]}>
-                    {props.children}
-                  </ViewAtom>
-                </ScrollViewAtom>
-              ) : (
-                <ViewAtom style={[styles.flex1, props.style]}>
-                  {props.children}
-                </ViewAtom>
-              )
-            )
-        }
+            {
+              isLoader ? (loadingComponent)
+                : (
+                  isScrollView ? (
+                    <ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator={showsVerticalScrollIndicator} keyboardShouldPersistTaps="handled">
+                      <ViewAtom style={[styles.flex1, props.style]}>
+                        {props.children}
+                      </ViewAtom>
+                    </ScrollViewAtom>
+                  ) : (
+                    <ViewAtom style={[styles.flex1, props.style]}>
+                      {props.children}
+                    </ViewAtom>
+                  )
+                )
+            }
 
-        {!isLoader && bottomComponent && bottomComponent}
-      </KeyboardAvoidingView>
+            {!isLoader && bottomComponent && bottomComponent}
+          </KeyboardAvoidingView>
+        ) : null
+      }
+
     </SafeAreaView>
   );
 };
