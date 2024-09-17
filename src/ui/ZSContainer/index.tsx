@@ -16,6 +16,7 @@ type RootViewProps = ViewProps & {
   bottomComponent?: ReactNode;
   showsVerticalScrollIndicator?: boolean;
   loadingComponent?: React.ReactNode;
+  keyboardVerticalOffset?: number;
 };
 
 const ZSContainer = ({
@@ -29,6 +30,7 @@ const ZSContainer = ({
   bottomComponent,
   showsVerticalScrollIndicator = true,
   loadingComponent = <ActivityIndicator />,
+  keyboardVerticalOffset,
   ...props
 }: RootViewProps) => {
   const { palette } = useTheme();
@@ -50,6 +52,7 @@ const ZSContainer = ({
           <KeyboardAvoidingView
             style={styles.flex1}
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            keyboardVerticalOffset={keyboardVerticalOffset}
             enabled
           >
             {topComponent && topComponent}
