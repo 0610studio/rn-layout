@@ -5,19 +5,19 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         themeFonts: themeFonts,
         display: {
             large: {
-                fontSize: !isMobile ? 66 : 40,
+                fontSize: 66,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 66 : 40) * 1.5,
                 letterSpacing: 1
             },
             medium: {
-                fontSize: !isMobile ? 50 : 32,
+                fontSize: 50,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 50 : 32) * 1.5,
                 letterSpacing: 1
             },
             small: {
-                fontSize: !isMobile ? 40 : 25,
+                fontSize: 40,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 40 : 25) * 1.5,
                 letterSpacing: 1
@@ -25,19 +25,19 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         },
         heading: {
             large: {
-                fontSize: !isMobile ? 50 : 40,
+                fontSize: 40,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 50 : 40) * 1.5,
                 letterSpacing: 1
             },
             medium: {
-                fontSize: !isMobile ? 40 : 32,
+                fontSize: 32,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 40 : 32) * 1.5,
                 letterSpacing: 1
             },
             small: {
-                fontSize: !isMobile ? 32 : 25,
+                fontSize: 28,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: (!isMobile ? 32 : 25) * 1.5,
                 letterSpacing: 1
@@ -45,13 +45,13 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         },
         title: {
             XXlarge: {
-                fontSize: !isMobile ? 32 : 25,
+                fontSize: 25,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 32 : 25) * 1.5,
+                // lineHeight: 25 * 1.5,
                 letterSpacing: 1
             },
             Xlarge: {
-                fontSize: 25,
+                fontSize: 23,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: 25 * 1.5,
                 letterSpacing: 1
@@ -76,6 +76,12 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
             },
             Xsmall: {
                 fontSize: 15,
+                fontFamily: themeFonts?.[700], // fontWeight: '700',
+                // lineHeight: 15 * 1.5,
+                letterSpacing: 1
+            },
+            XXsmall: {
+                fontSize: 13,
                 fontFamily: themeFonts?.[700], // fontWeight: '700',
                 // lineHeight: 15 * 1.5,
                 letterSpacing: 1
@@ -109,6 +115,11 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
             },
             Xsmall: {
                 fontSize: 13,
+                fontFamily: themeFonts?.[400],
+                // lineHeight: 13 * 1.5,
+            },
+            XXsmall: {
+                fontSize: 11,
                 fontFamily: themeFonts?.[400],
                 // lineHeight: 13 * 1.5,
             }
@@ -154,6 +165,10 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
             Xsmall: {
                 fontFamily: themeFonts?.[400],
                 fontSize: 11,
+            },
+            XXsmall: {
+                fontFamily: themeFonts?.[400],
+                fontSize: 9,
             }
         },
         links: {

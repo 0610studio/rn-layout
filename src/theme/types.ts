@@ -67,6 +67,7 @@ export interface Typo6Style {
     medium: TextProps['style'];
     small: TextProps['style'];
     Xsmall: TextProps['style'];
+    XXsmall: TextProps['style'];
 }
 export interface TypographyVariants {
     themeFonts?: ThemeFonts;
