@@ -6,6 +6,7 @@ import ScrollViewAtom from '../atoms/ScrollViewAtom';
 import { useTheme } from '../../model/useThemeProvider';
 
 type RootViewProps = ViewProps & {
+  backgroundColor?: string;
   isLoader?: boolean;
   statusBarColor?: string;
   barStyle?: 'light-content' | 'dark-content';
@@ -20,6 +21,7 @@ type RootViewProps = ViewProps & {
 };
 
 const ZSContainer = ({
+  backgroundColor,
   isLoader = false,
   statusBarColor,
   barStyle,
@@ -44,7 +46,7 @@ const ZSContainer = ({
   }, []);
 
   return (
-    <SafeAreaView style={[{ backgroundColor: palette.background.base }, styles.flex1]} edges={edges}>
+    <SafeAreaView style={[{ backgroundColor: backgroundColor || palette.background.base }, styles.flex1]} edges={edges}>
       <StatusBar barStyle={barStyle || 'dark-content'} backgroundColor={statusBarColor || palette.background.base} />
 
       {
