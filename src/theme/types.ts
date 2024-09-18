@@ -125,16 +125,24 @@ export type TypoOptions =
     'title.medium' |
     'title.small' |
     'title.Xsmall' |
+    'title.XXsmall' |
+    'body.XXlarge' |
+    'body.Xlarge' |
     'body.large' |
     'body.medium' |
     'body.small' |
+    'body.Xsmall' |
+    'body.XXsmall' |
     'detail.large' |
     'detail.medium' |
     'detail.small' |
+    'label.XXlarge' |
+    'label.Xlarge' |
     'label.large' |
     'label.medium' |
     'label.small' |
     'label.Xsmall' |
+    'label.XXsmall' |
     'links.large' |
     'links.medium' |
     'links.small';
