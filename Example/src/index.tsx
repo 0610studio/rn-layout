@@ -91,8 +91,8 @@ function LayoutExample(): React.JSX.Element {
                 console.log('SleekPressable 버튼 클릭');
                 setEmail(prev => prev + '1');
               }}>
-              <Typography typo="body.1" style={{color: 'black'}}>
-                title.small
+              <Typography typo="label.1" style={{color: 'black'}}>
+                label.1
               </Typography>
             </ZSPressable>
 

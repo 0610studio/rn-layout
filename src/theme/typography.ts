@@ -38,32 +38,32 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         title: {
             1: {
                 fontSize: 16,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             },
             2: {
                 fontSize: 14,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             },
             3: {
                 fontSize: 12,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             },
             4: {
                 fontSize: 10,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             },
             5: {
                 fontSize: 9,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             },
             6: {
                 fontSize: 8,
-                fontFamily: themeFonts?.[900],
+                fontFamily: themeFonts?.[800],
                 letterSpacing: 1
             }
         },
