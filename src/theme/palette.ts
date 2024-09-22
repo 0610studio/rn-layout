@@ -1,19 +1,78 @@
 import { Theme } from "./types";
 
+export const transparency = {
+  '0%': '00',   // 완전 투명
+  '2%': '05',
+  '4%': '0A',
+  '6%': '0F',
+  '8%': '14',
+  '10%': '1A',
+  '12%': '1F',
+  '14%': '24',
+  '16%': '29',
+  '18%': '2E',
+  '20%': '33',
+  '22%': '38',
+  '24%': '3D',
+  '26%': '42',
+  '28%': '47',
+  '30%': '4D',
+  '32%': '52',
+  '34%': '57',
+  '36%': '5C',
+  '38%': '61',
+  '40%': '66',
+  '42%': '6B',
+  '44%': '70',
+  '46%': '75',
+  '48%': '7A',
+  '50%': '80',
+  '52%': '85',
+  '54%': '8A',
+  '56%': '8F',
+  '58%': '94',
+  '60%': '99',
+  '62%': '9E',
+  '64%': 'A3',
+  '66%': 'A8',
+  '68%': 'AD',
+  '70%': 'B3',
+  '72%': 'B8',
+  '74%': 'BD',
+  '76%': 'C2',
+  '78%': 'C7',
+  '80%': 'CC',
+  '82%': 'D1',
+  '84%': 'D6',
+  '86%': 'DB',
+  '88%': 'E0',
+  '90%': 'E6',
+  '92%': 'EB',
+  '94%': 'F0',
+  '96%': 'F5',
+  '98%': 'FA',
+  '100%': 'FF'  // 완전 불투명
+};
+
+
 const PRIMARY = {
   0: '#FFF7E6',
-  5: '#FFEDD1',
+  5: '#FCEDD0',  // p-lighter
   10: '#FFE2AD',
-  20: '#FFC55C',
+  20: '#F5BF64', // p-light
   30: '#fca54c',
   40: '#ff9225',
-  50: '#ff860d',
-  60: '#FF7F00',
-  70: '#e07400',
+  50: '#FF9F06', // p-main
+  60: '#DD9434', // p-dark
+  70: '#AC7326', // p-darker
   80: '#c46500',
   90: '#995400',
   100: '#663800',
-  main: '#ff860d',
+  lighter: '#FCEDD0',
+  light: '#F5BF64',
+  main: '#FF9F06',
+  dark: '#DD9434',
+  darker: '#AC7326',
 };
 
 const SECONDARY = {
@@ -91,15 +150,15 @@ const INFORMATION = {
 const GREY = {
   0: '#FFFFFF',
   5: '#F8F8F8',
-  10: '#F0F0F0',
-  20: '#E4E4E4',
-  30: '#D8D8D8',
-  40: '#C6C6C6',
-  50: '#8E8E8E',
-  60: '#717171',
-  70: '#555555',
-  80: '#2D2D2D',
-  90: '#1D1D1D',
+  10: '#F9FAFB',
+  20: '#F4F6F8',
+  30: '#DFE3E8',
+  40: '#C4CDD5',
+  50: '#919EAB',
+  60: '#637381',
+  70: '#454F5B',
+  80: '#1C252E',
+  90: '#141A21',
   100: '#000000',
 };
 
@@ -143,9 +202,8 @@ export const Colors = {
 };
 
 export const TextColors = {
-  title: GREY[90],
-  body: GREY[90],
-  detail: GREY[70],
+  primary: GREY[80],
+  secondary: GREY[60],
   disabled: GREY[50],
   danger: DANGER[60],
   warning: WARNING[60],
@@ -182,7 +240,7 @@ export const ActionColors = {
   disable: GREY[20]
 };
 
-export const DividerColor = (GREY[50] + '40'); // '0.25';
+export const DividerColor = (GREY[50] + transparency['20%']);
 
 export default function palette({ mode = 'light', themeColors }: { mode: 'light' | 'dark'; themeColors?: { light?: Theme; dark?: Theme; } }): Theme {
   const light = themeColors?.light || {

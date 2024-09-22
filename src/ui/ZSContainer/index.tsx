@@ -63,7 +63,7 @@ const ZSContainer = ({
               isLoader ? (loadingComponent)
                 : (
                   isScrollView ? (
-                    <ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator={showsVerticalScrollIndicator} keyboardShouldPersistTaps="handled">
+                    <ScrollViewAtom scrollViewRef={scrollViewRef} style={styles.flex1} bounces={false} contentContainerStyle={[styles.scrollContainerStyle]} showsVerticalScrollIndicator={showsVerticalScrollIndicator} keyboardShouldPersistTaps="handled">
                       <ViewAtom style={[styles.flex1, props.style]}>
                         {props.children}
                       </ViewAtom>

@@ -20,9 +20,8 @@ export interface BorderTheme {
     information: string;
 };
 export interface TextTheme {
-    title: string;
-    body: string;
-    detail: string;
+    primary: string;
+    secondary: string;
     disabled: string;
     danger: string;
     warning: string;
@@ -55,29 +54,22 @@ export interface Theme extends CommonPalette {
     action: ActionTheme;
     divider: string;
 };
-export interface Typo3Style {
-    large: TextProps['style'];
-    medium: TextProps['style'];
-    small: TextProps['style'];
-}
-export interface Typo6Style {
-    XXlarge: TextProps['style'];
-    Xlarge: TextProps['style'];
-    large: TextProps['style'];
-    medium: TextProps['style'];
-    small: TextProps['style'];
-    Xsmall: TextProps['style'];
-    XXsmall: TextProps['style'];
+export interface TypoNumber {
+    '1': TextProps['style'];
+    '2': TextProps['style'];
+    '3': TextProps['style'];
+    '4': TextProps['style'];
+    '5': TextProps['style'];
+    '6': TextProps['style'];
 }
 export interface TypographyVariants {
     themeFonts?: ThemeFonts;
-    display: Typo3Style;
-    heading: Typo3Style;
-    title: Typo6Style;
-    body: Typo6Style;
-    detail: Typo3Style;
-    label: Typo6Style;
-    links: Typo3Style;
+    heading: TypoNumber;
+    label: TypoNumber;
+    title: TypoNumber;
+    subTitle: TypoNumber;
+    body: TypoNumber;
+    caption: TypoNumber;
 };
 
 export interface TypographyVariantsProps extends TypographyVariants {
@@ -85,75 +77,87 @@ export interface TypographyVariantsProps extends TypographyVariants {
 };
 
 export interface TypographyVariantsOptions {
-    'display.large'?: React.CSSProperties;
-    'display.medium'?: React.CSSProperties;
-    'display.small'?: React.CSSProperties;
-    'heading.large'?: React.CSSProperties;
-    'heading.medium'?: React.CSSProperties;
-    'heading.small'?: React.CSSProperties;
-    'title.XXlarge'?: React.CSSProperties;
-    'title.Xlarge'?: React.CSSProperties;
-    'title.large'?: React.CSSProperties;
-    'title.medium'?: React.CSSProperties;
-    'title.small'?: React.CSSProperties;
-    'title.Xsmall'?: React.CSSProperties;
-    'body.large'?: React.CSSProperties;
-    'body.medium'?: React.CSSProperties;
-    'body.small'?: React.CSSProperties;
-    'detail.large'?: React.CSSProperties;
-    'detail.medium'?: React.CSSProperties;
-    'detail.small'?: React.CSSProperties;
-    'label.large'?: React.CSSProperties;
-    'label.medium'?: React.CSSProperties;
-    'label.small'?: React.CSSProperties;
-    'label.Xsmall'?: React.CSSProperties;
-    'links.large'?: React.CSSProperties;
-    'links.medium'?: React.CSSProperties;
-    'links.small'?: React.CSSProperties;
+    'heading.1'?: React.CSSProperties;
+    'heading.2'?: React.CSSProperties;
+    'heading.3'?: React.CSSProperties;
+    'heading.4'?: React.CSSProperties;
+    'heading.5'?: React.CSSProperties;
+    'heading.6'?: React.CSSProperties;
+    'title.1'?: React.CSSProperties;
+    'title.2'?: React.CSSProperties;
+    'title.3'?: React.CSSProperties;
+    'title.4'?: React.CSSProperties;
+    'title.5'?: React.CSSProperties;
+    'title.6'?: React.CSSProperties;
+    'subTitle.1'?: React.CSSProperties;
+    'subTitle.2'?: React.CSSProperties;
+    'subTitle.3'?: React.CSSProperties;
+    'subTitle.4'?: React.CSSProperties;
+    'subTitle.5'?: React.CSSProperties;
+    'subTitle.6'?: React.CSSProperties;
+    'body.1'?: React.CSSProperties;
+    'body.2'?: React.CSSProperties;
+    'body.3'?: React.CSSProperties;
+    'body.4'?: React.CSSProperties;
+    'body.5'?: React.CSSProperties;
+    'body.6'?: React.CSSProperties;
+    'label.1'?: React.CSSProperties;
+    'label.2'?: React.CSSProperties;
+    'label.3'?: React.CSSProperties;
+    'label.4'?: React.CSSProperties;
+    'label.5'?: React.CSSProperties;
+    'label.6'?: React.CSSProperties;
+    'caption.1'?: React.CSSProperties;
+    'caption.2'?: React.CSSProperties;
+    'caption.3'?: React.CSSProperties;
+    'caption.4'?: React.CSSProperties;
+    'caption.5'?: React.CSSProperties;
+    'caption.6'?: React.CSSProperties;
 };
 
 export type TypoOptions =
-    'display.large' |
-    'display.medium' |
-    'display.small' |
-    'heading.large' |
-    'heading.medium' |
-    'heading.small' |
-    'title.XXlarge' |
-    'title.Xlarge' |
-    'title.large' |
-    'title.medium' |
-    'title.small' |
-    'title.Xsmall' |
-    'title.XXsmall' |
-    'body.XXlarge' |
-    'body.Xlarge' |
-    'body.large' |
-    'body.medium' |
-    'body.small' |
-    'body.Xsmall' |
-    'body.XXsmall' |
-    'detail.large' |
-    'detail.medium' |
-    'detail.small' |
-    'label.XXlarge' |
-    'label.Xlarge' |
-    'label.large' |
-    'label.medium' |
-    'label.small' |
-    'label.Xsmall' |
-    'label.XXsmall' |
-    'links.large' |
-    'links.medium' |
-    'links.small';
+    'heading.1' |
+    'heading.2' |
+    'heading.3' |
+    'heading.4' |
+    'heading.5' |
+    'heading.6' |
+    'title.1' |
+    'title.2' |
+    'title.3' |
+    'title.4' |
+    'title.5' |
+    'title.6' |
+    'subTitle.1' |
+    'subTitle.2' |
+    'subTitle.3' |
+    'subTitle.4' |
+    'subTitle.5' |
+    'subTitle.6' |
+    'body.1' |
+    'body.2' |
+    'body.3' |
+    'body.4' |
+    'body.5' |
+    'body.6' |
+    'label.1' |
+    'label.2' |
+    'label.3' |
+    'label.4' |
+    'label.5' |
+    'label.6' |
+    'caption.1' |
+    'caption.2' |
+    'caption.3' |
+    'caption.4' |
+    'caption.5' |
+    'caption.6';
 
-export type TypoStyle = 'display' | 'heading' | 'title' | 'body' | 'detail' | 'label' | 'links';
+export type TypoStyle = 'heading' | 'title' | 'subTitle' | 'label' | 'body' | 'caption';
 
-export type Typo3Size = 'large' | 'medium' | 'small';
+export type TypoSubStyle = '1' | '2' | '3' | '4' | '5' | '6';
 
-export type Typo6Size = 'XXlarge' | 'Xlarge' | 'large' | 'medium' | 'small' | 'Xsmall';
-
-export type TextColorOptions = 'title' | 'body' | 'detail' | 'disabled' | 'danger' | 'warning' | 'success' | 'information' | 'white' | 'black';
+export type TextColorOptions = 'primary' | 'secondary' | 'disabled' | 'danger' | 'warning' | 'success' | 'information' | 'white' | 'black';
 
 export interface ThemeProps {
     palette: Theme;
