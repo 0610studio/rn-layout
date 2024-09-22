@@ -57,8 +57,8 @@ export const transparency = {
 
 const PRIMARY = {
   0: '#FFF7E6',
-  5: '#FCEDD0',  // p-lighter
-  10: '#FFE2AD',
+  5: '#FCEDD0',  
+  10: '#F9DAA3', // p-lighter
   20: '#F5BF64', // p-light
   30: '#fca54c',
   40: '#ff9225',
@@ -68,7 +68,7 @@ const PRIMARY = {
   80: '#c46500',
   90: '#995400',
   100: '#663800',
-  lighter: '#FCEDD0',
+  lighter: '#F9DAA3',
   light: '#F5BF64',
   main: '#FF9F06',
   dark: '#DD9434',
