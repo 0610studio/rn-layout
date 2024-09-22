@@ -149,9 +149,9 @@ const INFORMATION = {
 
 const GREY = {
   0: '#FFFFFF',
-  5: '#F8F8F8',
-  10: '#F9FAFB',
-  20: '#F4F6F8',
+  5: '#F8F8F8',  // layer1
+  10: '#F9FAFB', // layer2
+  20: '#F4F6F8', // neutral
   30: '#DFE3E8',
   40: '#C4CDD5',
   50: '#919EAB',
@@ -224,10 +224,10 @@ export const BorderColors = {
 };
 
 export const BackgroundColors = {
-  paper: GREY[5],
-  base: GREY[0],
   layer1: GREY[5],
-  layer2: SECONDARY[5],
+  layer2: GREY[10],
+  neutral: GREY[20],
+  base: GREY[0],
   danger: DANGER[5],
   warning: WARNING[5],
   success: SUCCESS[5],

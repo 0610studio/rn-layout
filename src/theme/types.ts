@@ -1,8 +1,8 @@
 import { TextProps } from "react-native";
 
 export interface BackgroundTheme {
-    paper: string;
     base: string;
+    neutral: string;
     layer1: string;
     layer2: string;
     danger: string;
