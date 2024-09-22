@@ -102,32 +102,32 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
         label: {
             1: {
                 fontSize: 16,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             },
             2: {
                 fontSize: 14,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             },
             3: {
                 fontSize: 13,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             },
             4: {
                 fontSize: 12,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             },
             5: {
                 fontSize: 11,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             },
             6: {
                 fontSize: 10,
-                fontFamily: themeFonts?.[500],
+                fontFamily: themeFonts?.[600],
                 letterSpacing: 1
             }
         },
