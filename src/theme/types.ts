@@ -88,12 +88,12 @@ export interface TypographyVariantsOptions {
     'subTitle.4'?: React.CSSProperties;
     'subTitle.5'?: React.CSSProperties;
     'subTitle.6'?: React.CSSProperties;
-    'body.1'?: React.CSSProperties;
-    'body.2'?: React.CSSProperties;
-    'body.3'?: React.CSSProperties;
-    'body.4'?: React.CSSProperties;
-    'body.5'?: React.CSSProperties;
-    'body.6'?: React.CSSProperties;
+    'body.1'?:       React.CSSProperties;
+    'body.2'?:       React.CSSProperties;
+    'body.3'?:       React.CSSProperties;
+    'body.4'?:       React.CSSProperties;
+    'body.5'?:       React.CSSProperties;
+    'body.6'?:       React.CSSProperties;
     'caption.1'?: React.CSSProperties;
     'caption.2'?: React.CSSProperties;
     'caption.3'?: React.CSSProperties;
@@ -103,39 +103,30 @@ export interface TypographyVariantsOptions {
 };
 
 export type TypoOptions =
-    'display.large' |
-    'display.medium' |
-    'display.small' |
-    'heading.large' |
-    'heading.medium' |
-    'heading.small' |
-    'title.XXlarge' |
-    'title.Xlarge' |
-    'title.large' |
-    'title.medium' |
-    'title.small' |
-    'title.Xsmall' |
-    'title.XXsmall' |
-    'body.XXlarge' |
-    'body.Xlarge' |
-    'body.large' |
-    'body.medium' |
-    'body.small' |
-    'body.Xsmall' |
-    'body.XXsmall' |
-    'detail.large' |
-    'detail.medium' |
-    'detail.small' |
-    'label.XXlarge' |
-    'label.Xlarge' |
-    'label.large' |
-    'label.medium' |
-    'label.small' |
-    'label.Xsmall' |
-    'label.XXsmall' |
-    'links.large' |
-    'links.medium' |
-    'links.small';
+'heading.1' |
+'heading.2' |
+'heading.3' |
+'heading.4' |
+'heading.5' |
+'heading.6' |
+'subTitle.1'|
+'subTitle.2'|
+'subTitle.3'|
+'subTitle.4'|
+'subTitle.5'|
+'subTitle.6'|
+'body.1'  |
+'body.2'   |
+'body.3'   |
+'body.4'   |
+'body.5'   |
+'body.6'   |
+'caption.1' |
+'caption.2' |
+'caption.3' |
+'caption.4' |
+'caption.5' |
+'caption.6';
 
 export type TypoStyle = 'display' | 'heading' | 'title' | 'body' | 'detail' | 'label' | 'links';
 
