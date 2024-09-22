@@ -35,6 +35,38 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
                 letterSpacing: 1
             }
         },
+        title: {
+            1: {
+                fontSize: 16,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            },
+            2: {
+                fontSize: 14,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            },
+            3: {
+                fontSize: 12,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            },
+            4: {
+                fontSize: 10,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            },
+            5: {
+                fontSize: 9,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            },
+            6: {
+                fontSize: 8,
+                fontFamily: themeFonts?.[900],
+                letterSpacing: 1
+            }
+        },
         subTitle: {
             1: {
                 fontSize: 16,
@@ -67,6 +99,38 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
                 letterSpacing: 1
             }
         },
+        label: {
+            1: {
+                fontSize: 16,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            },
+            2: {
+                fontSize: 14,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            },
+            3: {
+                fontSize: 13,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            },
+            4: {
+                fontSize: 12,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            },
+            5: {
+                fontSize: 11,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            },
+            6: {
+                fontSize: 10,
+                fontFamily: themeFonts?.[500],
+                letterSpacing: 1
+            }
+        },
         body: {
             1: {
                 fontSize: 16,
@@ -79,22 +143,22 @@ export default function typography({ isMobile = true, themeFonts }: { isMobile?:
                 letterSpacing: 1
             },
             3: {
-                fontSize: 12,
+                fontSize: 13,
                 fontFamily: themeFonts?.[400],
                 letterSpacing: 1
             },
             4: {
-                fontSize: 10,
+                fontSize: 12,
                 fontFamily: themeFonts?.[400],
                 letterSpacing: 1
             },
             5: {
-                fontSize: 9,
+                fontSize: 11,
                 fontFamily: themeFonts?.[400],
                 letterSpacing: 1
             },
             6: {
-                fontSize: 8,
+                fontSize: 10,
                 fontFamily: themeFonts?.[400],
                 letterSpacing: 1
             }

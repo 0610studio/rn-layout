@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 import useTextField from './model/useTextField';
 import ButtonClose from './ui/ButtonClose';
 import ErrorComponent from './ui/ErrorComponent';
-import { Colors, Typo3Size, TypoOptions, TypoStyle } from '../../theme';
+import { Colors, TypoOptions, TypoStyle, TypoSubStyle } from '../../theme';
 import { extractStyle } from '../../model/utils';
 import { useTheme } from '../../model/useThemeProvider';
 
@@ -63,7 +63,7 @@ interface Props {
  * @returns {JSX.Element}
  */
 const TextField = ({
-  typo = "detail.medium",
+  typo = "body.2",
   status = 'default',
   value,
   onChangeText,
@@ -87,7 +87,7 @@ const TextField = ({
   isTextArea = false
 }: Props): JSX.Element => {
   const { typography } = useTheme();
-  const [s01, s02] = typo.split('.') as [TypoStyle, Typo3Size];
+  const [s01, s02] = typo.split('.') as [TypoStyle, TypoSubStyle];
   const fontSize = useMemo(() => extractStyle(typography[s01][s02], 'fontSize') as number || 17, [typography, s01, s02]);
   const fontFamily = useMemo(() => extractStyle(typography[s01][s02], 'fontFamily') as string || '', [typography, s01, s02]);
 
