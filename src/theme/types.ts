@@ -55,29 +55,20 @@ export interface Theme extends CommonPalette {
     action: ActionTheme;
     divider: string;
 };
-export interface Typo3Style {
-    large: TextProps['style'];
-    medium: TextProps['style'];
-    small: TextProps['style'];
-}
-export interface Typo6Style {
-    XXlarge: TextProps['style'];
-    Xlarge: TextProps['style'];
-    large: TextProps['style'];
-    medium: TextProps['style'];
-    small: TextProps['style'];
-    Xsmall: TextProps['style'];
-    XXsmall: TextProps['style'];
+export interface TypoNumber {
+    1: TextProps['style'];
+    2: TextProps['style'];
+    3: TextProps['style'];
+    4: TextProps['style'];
+    5: TextProps['style'];
+    6: TextProps['style'];
 }
 export interface TypographyVariants {
     themeFonts?: ThemeFonts;
-    display: Typo3Style;
-    heading: Typo3Style;
-    title: Typo6Style;
-    body: Typo6Style;
-    detail: Typo3Style;
-    label: Typo6Style;
-    links: Typo3Style;
+    heading: TypoNumber;
+    subTitle: TypoNumber;
+    body: TypoNumber;
+    caption: TypoNumber;
 };
 
 export interface TypographyVariantsProps extends TypographyVariants {
@@ -85,31 +76,30 @@ export interface TypographyVariantsProps extends TypographyVariants {
 };
 
 export interface TypographyVariantsOptions {
-    'display.large'?: React.CSSProperties;
-    'display.medium'?: React.CSSProperties;
-    'display.small'?: React.CSSProperties;
-    'heading.large'?: React.CSSProperties;
-    'heading.medium'?: React.CSSProperties;
-    'heading.small'?: React.CSSProperties;
-    'title.XXlarge'?: React.CSSProperties;
-    'title.Xlarge'?: React.CSSProperties;
-    'title.large'?: React.CSSProperties;
-    'title.medium'?: React.CSSProperties;
-    'title.small'?: React.CSSProperties;
-    'title.Xsmall'?: React.CSSProperties;
-    'body.large'?: React.CSSProperties;
-    'body.medium'?: React.CSSProperties;
-    'body.small'?: React.CSSProperties;
-    'detail.large'?: React.CSSProperties;
-    'detail.medium'?: React.CSSProperties;
-    'detail.small'?: React.CSSProperties;
-    'label.large'?: React.CSSProperties;
-    'label.medium'?: React.CSSProperties;
-    'label.small'?: React.CSSProperties;
-    'label.Xsmall'?: React.CSSProperties;
-    'links.large'?: React.CSSProperties;
-    'links.medium'?: React.CSSProperties;
-    'links.small'?: React.CSSProperties;
+    'heading.1'?: React.CSSProperties;
+    'heading.2'?: React.CSSProperties;
+    'heading.3'?: React.CSSProperties;
+    'heading.4'?: React.CSSProperties;
+    'heading.5'?: React.CSSProperties;
+    'heading.6'?: React.CSSProperties;
+    'subTitle.1'?: React.CSSProperties;
+    'subTitle.2'?: React.CSSProperties;
+    'subTitle.3'?: React.CSSProperties;
+    'subTitle.4'?: React.CSSProperties;
+    'subTitle.5'?: React.CSSProperties;
+    'subTitle.6'?: React.CSSProperties;
+    'body.1'?: React.CSSProperties;
+    'body.2'?: React.CSSProperties;
+    'body.3'?: React.CSSProperties;
+    'body.4'?: React.CSSProperties;
+    'body.5'?: React.CSSProperties;
+    'body.6'?: React.CSSProperties;
+    'caption.1'?: React.CSSProperties;
+    'caption.2'?: React.CSSProperties;
+    'caption.3'?: React.CSSProperties;
+    'caption.4'?: React.CSSProperties;
+    'caption.5'?: React.CSSProperties;
+    'caption.6'?: React.CSSProperties;
 };
 
 export type TypoOptions =

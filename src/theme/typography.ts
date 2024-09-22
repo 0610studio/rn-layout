@@ -3,190 +3,133 @@ import { ThemeFonts, TypographyVariantsProps } from "./types";
 export default function typography({ isMobile = true, themeFonts }: { isMobile?: boolean; themeFonts?: ThemeFonts }): TypographyVariantsProps {
     return {
         themeFonts: themeFonts,
-        display: {
-            large: {
-                fontSize: 66,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 66 : 40) * 1.5,
-                letterSpacing: 1
-            },
-            medium: {
-                fontSize: 50,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 50 : 32) * 1.5,
-                letterSpacing: 1
-            },
-            small: {
-                fontSize: 40,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 40 : 25) * 1.5,
-                letterSpacing: 1
-            }
-        },
         heading: {
-            large: {
-                fontSize: 40,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 50 : 40) * 1.5,
+            1: {
+                fontSize: 64,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            medium: {
+            2: {
+                fontSize: 48,
+                fontFamily: themeFonts?.[700],
+                letterSpacing: 1
+            },
+            3: {
                 fontSize: 32,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 40 : 32) * 1.5,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            small: {
-                fontSize: 28,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: (!isMobile ? 32 : 25) * 1.5,
+            4: {
+                fontSize: 24,
+                fontFamily: themeFonts?.[700],
+                letterSpacing: 1
+            },
+            5: {
+                fontSize: 20,
+                fontFamily: themeFonts?.[700],
+                letterSpacing: 1
+            },
+            6: {
+                fontSize: 18,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             }
         },
-        title: {
-            XXlarge: {
-                fontSize: 25,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 25 * 1.5,
+        subTitle: {
+            1: {
+                fontSize: 16,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            Xlarge: {
-                fontSize: 23,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 25 * 1.5,
+            2: {
+                fontSize: 14,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            large: {
-                fontSize: 21,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 21 * 1.5,
+            3: {
+                fontSize: 12,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            medium: {
-                fontSize: 19,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 19 * 1.5,
+            4: {
+                fontSize: 10,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            small: {
-                fontSize: 17,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 17 * 1.5,
+            5: {
+                fontSize: 9,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             },
-            Xsmall: {
-                fontSize: 15,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 15 * 1.5,
-                letterSpacing: 1
-            },
-            XXsmall: {
-                fontSize: 13,
-                fontFamily: themeFonts?.[700], // fontWeight: '700',
-                // lineHeight: 15 * 1.5,
+            6: {
+                fontSize: 8,
+                fontFamily: themeFonts?.[700],
                 letterSpacing: 1
             }
         },
         body: {
-            XXlarge: {
-                fontSize: 23,
+            1: {
+                fontSize: 16,
                 fontFamily: themeFonts?.[400],
-                // lineHeight: 23 * 1.5,
+                letterSpacing: 1
             },
-            Xlarge: {
-                fontSize: 21,
+            2: {
+                fontSize: 14,
                 fontFamily: themeFonts?.[400],
-                // lineHeight: 21 * 1.5,
+                letterSpacing: 1
             },
-            large: {
-                fontSize: 19,
+            3: {
+                fontSize: 12,
                 fontFamily: themeFonts?.[400],
-                // lineHeight: 19 * 1.5,
+                letterSpacing: 1
             },
-            medium: {
-                fontSize: 17,
+            4: {
+                fontSize: 10,
                 fontFamily: themeFonts?.[400],
-                // lineHeight: 17 * 1.5,
+                letterSpacing: 1
             },
-            small: {
-                fontSize: 15,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 15 * 1.5,
-            },
-            Xsmall: {
-                fontSize: 13,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 13 * 1.5,
-            },
-            XXsmall: {
-                fontSize: 11,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 13 * 1.5,
-            }
-        },
-        detail: {
-            large: {
-                fontSize: 17,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 17 * 1.5,
-            },
-            medium: {
-                fontSize: 15,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 15 * 1.5,
-            },
-            small: {
-                fontSize: 13,
-                fontFamily: themeFonts?.[400],
-                // lineHeight: 13 * 1.5,
-            },
-        },
-        label: {
-            XXlarge: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 21,
-            },
-            Xlarge: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 19,
-            },
-            large: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 17,
-            },
-            medium: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 15,
-            },
-            small: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 13,
-            },
-            Xsmall: {
-                fontFamily: themeFonts?.[400],
-                fontSize: 11,
-            },
-            XXsmall: {
-                fontFamily: themeFonts?.[400],
+            5: {
                 fontSize: 9,
+                fontFamily: themeFonts?.[400],
+                letterSpacing: 1
+            },
+            6: {
+                fontSize: 8,
+                fontFamily: themeFonts?.[400],
+                letterSpacing: 1
             }
         },
-        links: {
-            large: {
+        caption: {
+            1: {
+                fontSize: 12,
                 fontFamily: themeFonts?.[400],
-                fontSize: 19,
-                // lineHeight: 1.5,
+                letterSpacing: 1
             },
-            medium: {
+            2: {
+                fontSize: 11,
                 fontFamily: themeFonts?.[400],
-                fontSize: 17,
-                // lineHeight: 1.5,
+                letterSpacing: 1
             },
-            small: {
+            3: {
+                fontSize: 10,
                 fontFamily: themeFonts?.[400],
-                fontSize: 15,
-                // lineHeight: 1.5,
+                letterSpacing: 1
             },
-        }
+            4: {
+                fontSize: 9,
+                fontFamily: themeFonts?.[400],
+                letterSpacing: 1
+            },
+            5: {
+                fontSize: 8,
+                fontFamily: themeFonts?.[400],
+                letterSpacing: 1
+            },
+            6: {
+                fontSize: 7,
+                fontFamily: themeFonts?.[400],
+                letterSpacing: 1
+            }
+        },
     }
 }
