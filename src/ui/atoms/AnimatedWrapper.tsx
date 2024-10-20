@@ -1,17 +1,24 @@
 import { ViewProps } from "react-native";
-import Animated, { FadeInDown, FadeOut } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeOut, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import ViewAtom from "./ViewAtom";
+
+const duration = 300;
 
 interface AnimatedWrapperProps extends ViewProps {
     isAnimation: boolean;
 }
 
 const AnimatedWrapper = ({ isAnimation = true, ...props }: AnimatedWrapperProps) => {
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        shadowOpacity: withTiming(1, { duration }),
+    }));
+
     return isAnimation ? (
         <Animated.View
-            style={props.style}
-            entering={FadeInDown}
-            exiting={FadeOut}
+            style={[props.style, animatedStyle]}
+            entering={FadeInDown.duration(duration)}
+            exiting={FadeOut.duration(duration)}
         >
             {props.children}
         </Animated.View>
