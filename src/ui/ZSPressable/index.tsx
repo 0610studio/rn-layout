@@ -1,6 +1,6 @@
 import { Pressable as RnPressable, ViewProps } from "react-native";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
-import AnimatedWrapper from "../atoms/AnimatedWrapper";
+import AnimatedWrapper, { ShadowLevel } from "../atoms/AnimatedWrapper";
 
 const DEFAULT_DURATION = { duration: 100 };
 
@@ -12,6 +12,7 @@ interface SleekPressableProps extends ViewProps {
     flex?: number;
     minWidth?: number;
     isAnimation?: boolean;
+    elevationLevel?: ShadowLevel;
 };
 
 const ZSPressable = ({
@@ -22,6 +23,7 @@ const ZSPressable = ({
     pressedBackgroundBorderRadius = 16,
     flex = undefined,
     minWidth = undefined,
+    elevationLevel = 0,
     ...props
 }: SleekPressableProps) => {
     const isButtonPress = useSharedValue(0);
@@ -40,7 +42,7 @@ const ZSPressable = ({
     });
 
     return (
-        <AnimatedWrapper isAnimation={isAnimation} style={{ minWidth: minWidth }}>
+        <AnimatedWrapper isAnimation={isAnimation} elevationLevel={elevationLevel} style={{ minWidth: minWidth }}>
             <RnPressable
                 onPress={onPress}
                 onLongPress={onLongPress}

@@ -13,6 +13,7 @@ import {
   RadioGroup,
   TextField,
   useTheme,
+  Colors,
 } from '../dist';
 import {RadioOption} from '../dist/ui/types';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -28,6 +29,7 @@ function LayoutExample(): React.JSX.Element {
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [radioValue, setRadioValue] = useState<RadioOption>();
   const {palette} = useTheme();
+  const [responseType, setResponseType] = useState<RadioOption>();
 
   const handleSubmit = async () => {
     return new Promise(resolve => {
@@ -106,6 +108,26 @@ function LayoutExample(): React.JSX.Element {
                 body.2
               </Typography>
             </ZSPressable>
+          </View>
+
+          <View style={{marginTop: 15, marginBottom: 1}}>
+            <RadioGroup
+              options={[
+                {value: '답변이 필요없어요.', index: 'none'},
+                {value: '앱 알림으로 받고싶어요.', index: 'app'},
+                {value: '이메일로 받고싶어요.', index: 'email'},
+              ]}
+              value={responseType}
+              onSelect={(selectItem: RadioOption) => {
+                setResponseType(selectItem);
+              }}
+              valueStyle={{
+                style: {marginLeft: 10, marginTop: 0, color: Colors.grey[70]},
+                typo: 'body.2',
+              }}
+              selectStyle={{style: {color: '#585858'}, typo: 'body.5'}}
+              fullWidth
+            />
           </View>
 
           <Typography typo="heading.1">heading.1</Typography>
