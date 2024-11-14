@@ -1,3 +1,9 @@
+> ### ⚠️ Project Archived
+> 
+> 이 프로젝트는 현재 **아카이브** 상태입니다.
+> 주요 기능은 **ZS-ui**로 통합되었습니다.
+> 
+> 👉 [ZS-ui](https://github.com/0610studio/zs-ui)로 이동
 
 https://github.com/0610studio/rn-layout/assets/39161206/722a938f-6298-4149-91bf-2996aeffea4a
 
